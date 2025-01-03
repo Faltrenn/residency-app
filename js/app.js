@@ -46,7 +46,7 @@ async function renderPage(path) {
     }
     setScripts();
   } catch (e) {
-    console.error("Error loading page:", error);
+    console.error("Error loading page:", e);
     app.innerHTML = "<h1>Erro ao carregar a página</h1>";
   }
 }
