@@ -4,10 +4,12 @@ from sys import argv
 
 class RequestHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
+        print(f"Handling request for: {self.path}")
         if (
             not self.path.endswith(".js")
             and not self.path.endswith(".html")
             and not self.path.endswith(".css")
+            and not self.path.endswith(".webmanifest")
         ):
             self.path = "/index.html"
         return super().do_GET()

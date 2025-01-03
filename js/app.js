@@ -1,22 +1,16 @@
-//const app = document.getElementById("app");
-//const route = window.location.pathname;
-//async function loadContent(id) {
-//  app.innerHTML = await fetch(
-//    id === 0 ? "../pages/home.html" : "../pages/login.html",
-//  ).then((r) => r.text());
-//
-//  // Executa os scripts embutidos manualmente
-//  const scripts = app.querySelectorAll("script");
-//  scripts.forEach((oldScript) => {
-//    const newScript = document.createElement("script");
-//    newScript.src = oldScript.src;
-//    // Adicionar script e remover após executado
-//    document.body.appendChild(newScript);
-//    document.body.removeChild(newScript);
-//  });
-//}
-//
-//loadContent(0)
+async function registerSW() {
+  if ("serviceWorker" in navigator) {
+    try {
+      await navigator.serviceWorker.register("./serviceWorker.js");
+    } catch (e) {
+      console.log(`Error ${e}`);
+    }
+  }
+}
+
+window.addEventListener("load", () => {
+  registerSW();
+});
 
 function setScripts() {
   const app = document.getElementById("app");
@@ -38,10 +32,12 @@ async function renderPage(path) {
         app.innerHTML = await fetch("../pages/home.html").then((f) => f.text());
         break;
       case "/login":
-        app.innerHTML = await fetch("../pages/login.html").then((f) => f.text());
+        app.innerHTML = await fetch("../pages/login.html").then((f) =>
+          f.text(),
+        );
         break;
       default:
-        app.innerHTML = "<h1>404 Not Found</h1>";
+        app.innerHTML = `${window.location.pathname}<h1>404 Not Found</h1>`;
         break;
     }
     setScripts();
