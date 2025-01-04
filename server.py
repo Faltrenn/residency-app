@@ -4,7 +4,6 @@ from sys import argv
 
 class RequestHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
-        print(f"Handling request for: {self.path}")
         if (
             not self.path.endswith(".js")
             and not self.path.endswith(".html")

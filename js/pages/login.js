@@ -1,11 +1,15 @@
-async function boa() {
+async function login() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+  console.log(username);
+  console.log(password);
   try {
-    const response = await fetch("http://127.0.0.1:8000/login", {
+    const response = await fetch("http://172.20.10.2:8000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ user: "Emanuel", pass: "senha" }),
+      body: JSON.stringify({ user: username, pass: password }),
     });
 
     if (!response.ok) {
@@ -20,5 +24,3 @@ async function boa() {
     alert("Não foi possível realizar o login. Tente novamente.");
   }
 }
-
-boa();

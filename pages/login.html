@@ -40,9 +40,9 @@
   }
 </style>
 
-  <a href="/">Home</a>
+<a href="/">Home</a>
 <h1>Try login</h1>
-<form id="loginForm">
+<form id="loginForm" onsubmit="return login(event)">
   <h2>Login</h2>
   <input type="text" id="username" placeholder="Usuário" required />
   <input type="password" id="password" placeholder="Senha" required />
