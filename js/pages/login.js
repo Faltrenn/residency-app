@@ -1,8 +1,7 @@
 async function login() {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
-  console.log(username);
-  console.log(password);
+
   try {
     const response = await fetch("http://172.20.10.2:8000/login", {
       method: "POST",
