@@ -1,4 +1,4 @@
-const CACHE_NAME = "residency-v4"; // Trocar sempre que tiver mudança em arquivos da aplicação
+const CACHE_NAME = "residency-v5"; // Trocar sempre que tiver mudança em arquivos da aplicação
 const ASSETS = [
   "./",
   "./index.html",
