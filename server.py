@@ -4,11 +4,8 @@ from sys import argv
 
 class RequestHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
-        if (
-            not self.path.endswith(".js")
-            and not self.path.endswith(".html")
-            and not self.path.endswith(".css")
-            and not self.path.endswith(".webmanifest")
+        if not self.path.endswith(
+            (".html", ".js", ".css", ".webmanifest", ".png", ".ico")
         ):
             self.path = "/index.html"
         return super().do_GET()
