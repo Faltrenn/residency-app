@@ -5,7 +5,7 @@ from sys import argv
 class RequestHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
         if not self.path.endswith(
-            (".html", ".js", ".css", ".webmanifest", ".png", ".ico")
+            (".html", ".css", ".js", ".webmanifest", ".png", ".ico", ".svg")
         ):
             self.path = "/index.html"
         return super().do_GET()
