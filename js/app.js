@@ -1,10 +1,10 @@
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function() {
+  window.addEventListener("load", function () {
     navigator.serviceWorker
       .register("../serviceWorker.js")
-      .then(res => console.log("service worker registered"))
-      .catch(err => console.log("service worker not registered", err))
-  })
+      .then(() => console.log("service worker registered"))
+      .catch((err) => console.log("service worker not registered", err));
+  });
 }
 
 function setScripts() {
@@ -12,7 +12,11 @@ function setScripts() {
   const scripts = app.querySelectorAll("script");
   scripts.forEach((oldScript) => {
     const newScript = document.createElement("script");
-    newScript.src = oldScript.src;
+    if (oldScript.hasAttribute("src")) {
+      newScript.src = oldScript.src;
+    } else {
+      newScript.textContent = oldScript.textContent;
+    }
 
     document.body.appendChild(newScript);
     document.body.removeChild(newScript);
@@ -25,6 +29,11 @@ async function renderPage(path) {
     switch (path) {
       case "/":
         app.innerHTML = await fetch("../pages/home.html").then((f) => f.text());
+        break;
+      case "/home2":
+        app.innerHTML = await fetch("../pages/home2.html").then((f) =>
+          f.text(),
+        );
         break;
       case "/login":
         app.innerHTML = await fetch("../pages/login.html").then((f) =>
