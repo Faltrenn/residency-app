@@ -1,5 +1,5 @@
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function () {
+  window.addEventListener("load", function() {
     navigator.serviceWorker
       .register("../serviceWorker.js")
       .then(() => console.log("service worker registered"))
@@ -25,6 +25,9 @@ function setScripts() {
 
 async function renderPage(path) {
   const app = document.getElementById("app");
+  //app.innerHTML = await fetch("../pages/login.html").then((f) => f.text());
+  //setScripts();
+  //return;
   try {
     switch (path) {
       case "/":

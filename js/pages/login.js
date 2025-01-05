@@ -1,9 +1,10 @@
-async function login() {
+async function login(event) {
+  event.preventDefault();
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
 
   try {
-    const response = await fetch("http://172.20.10.2:8000/login", {
+    const response = await fetch("http://192.168.0.106:8000/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,6 +19,7 @@ async function login() {
 
     const data = await response.json();
     alert(`Token recebido: ${data.token}`);
+    localStorage.setItem("token", data.token);
   } catch (error) {
     console.error("Erro na requisição:", error);
     alert("Não foi possível realizar o login. Tente novamente.");
