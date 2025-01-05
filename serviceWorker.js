@@ -1,4 +1,4 @@
-const CACHE_NAME = "residency-v7"; // Trocar sempre que tiver mudança em arquivos da aplicação
+const CACHE_NAME = "residency-v8"; // Trocar sempre que tiver mudança em arquivos da aplicação
 const ASSETS = [
   "./",
   "./index.html",
@@ -51,7 +51,7 @@ self.addEventListener("fetch", (event) => {
         return response;
       })
       .catch((e) => {
-        alert(e);
+        alert("Erro", e);
         caches.match(event.request);
       }),
   );

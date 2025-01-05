@@ -21,6 +21,9 @@ async function login(event) {
     alert(`Token recebido: ${data.token}`);
     localStorage.setItem("token", data.token);
     localStorage.setItem("role", data.role);
+    role = data.role;
+    token = data.token;
+    navigateTo("/");
   } catch (error) {
     console.error("Erro na requisição:", error);
     alert("Não foi possível realizar o login. Tente novamente.");

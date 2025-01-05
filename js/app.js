@@ -1,3 +1,6 @@
+var role = localStorage.getItem("role");
+var token = localStorage.getItem("token");
+
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function() {
     navigator.serviceWorker
@@ -21,6 +24,11 @@ function setScripts() {
     document.body.appendChild(newScript);
     document.body.removeChild(newScript);
   });
+}
+
+function navigateTo(path) {
+  window.history.pushState({}, "", path);
+  renderPage(path);
 }
 
 async function renderPage(path) {
@@ -59,8 +67,7 @@ document.addEventListener("click", (event) => {
   if (link && link.getAttribute("href")) {
     event.preventDefault();
     const path = link.getAttribute("href");
-    window.history.pushState({}, "", path);
-    renderPage(path);
+    navigateTo(path);
   }
 });
 
