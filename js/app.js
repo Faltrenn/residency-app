@@ -1,6 +1,12 @@
 var role = localStorage.getItem("role");
 var token = localStorage.getItem("token");
 
+let routes = {
+  "/": "../pages/home.html",
+  "/home2": "../pages/home2.html",
+  "/login": "../pages/login.html",
+};
+
 function setScripts() {
   const app = document.getElementById("app");
   const scripts = app.querySelectorAll("script");
@@ -13,48 +19,37 @@ function setScripts() {
     }
 
     document.body.appendChild(newScript);
-    document.body.removeChild(newScript);
+    //document.body.removeChild(newScript);
   });
 }
 
-function navigateTo(path) {
-  window.history.pushState({}, "", path);
-  renderPage(path);
-}
-
-async function renderPage(path) {
+async function setRouteToApp(path) {
   const app = document.getElementById("app");
-  //app.innerHTML = await fetch("../pages/login.html").then((f) => f.text());
-  //setScripts();
-  //return;
   try {
-    if (token === null) {
-      app.innerHTML = await fetch("../pages/login.html").then((f) => f.text());
-      return;
-    }
-    switch (path) {
-      case "/":
-        app.innerHTML = await fetch("../pages/home.html").then((f) => f.text());
-        break;
-      case "/home2":
-        app.innerHTML = await fetch("../pages/home2.html").then((f) =>
-          f.text(),
-        );
-        break;
-      case "/login":
-        app.innerHTML = await fetch("../pages/login.html").then((f) =>
-          f.text(),
-        );
-        break;
-      default:
-        app.innerHTML = `${window.location.pathname}<h1>404 Not Found</h1>`;
-        break;
-    }
+    app.innerHTML = await fetch(path).then((f) => f.text());
     setScripts();
   } catch (e) {
     console.error("Error loading page:", e);
     app.innerHTML = "<h1>Erro ao carregar a página</h1>";
   }
+}
+
+async function renderPage(path) {
+  if (token || path === "/login") {
+    if (path in routes) {
+      setRouteToApp(routes[path]);
+      return;
+    }
+    const app = document.getElementById("app");
+    app.innerHTML = `<h1>404 Not Found</h1>`;
+    return;
+  }
+  navigateTo("/login");
+}
+
+function navigateTo(path) {
+  window.history.pushState({}, "", path);
+  renderPage(path);
 }
 
 document.addEventListener("click", (event) => {

@@ -13,7 +13,7 @@ async function login(event) {
     });
 
     if (!response.ok) {
-      // Lança erro se a resposta não for um status 2xx
+      // Erro se a resposta não for um status 2xx
       throw new Error(`Erro: ${response.status} - ${response.statusText}`);
     }
 
@@ -25,7 +25,6 @@ async function login(event) {
     token = data.token;
     navigateTo("/");
   } catch (error) {
-    console.error("Erro na requisição:", error);
-    alert("Não foi possível realizar o login. Tente novamente.");
+    alert(`Não foi possível realizar o login. Tente novamente.\n${error}`);
   }
 }
