@@ -36,7 +36,6 @@ async function setRouteToApp(path) {
 
 async function renderPage(path) {
   if (token) {
-    alert(token);
     const response = await fetch("http://localhost:8000/login/check", {
       method: "GET",
       headers: {
