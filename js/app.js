@@ -37,6 +37,10 @@ async function renderPage(path) {
   //setScripts();
   //return;
   try {
+    if (token === null) {
+      app.innerHTML = await fetch("../pages/login.html").then((f) => f.text());
+      return;
+    }
     switch (path) {
       case "/":
         app.innerHTML = await fetch("../pages/home.html").then((f) => f.text());
