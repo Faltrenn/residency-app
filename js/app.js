@@ -35,6 +35,22 @@ async function setRouteToApp(path) {
 }
 
 async function renderPage(path) {
+  if (token) {
+    alert(token);
+    const response = await fetch("http://localhost:8000/login/check", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        token: token,
+      },
+    });
+    if (!response.ok) {
+      alert("Token expirado!");
+      token = null;
+      localStorage.clear();
+    }
+  }
+
   if (token || path === "/login") {
     if (path in routes) {
       setRouteToApp(routes[path]);
