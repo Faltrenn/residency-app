@@ -1,15 +1,6 @@
 var role = localStorage.getItem("role");
 var token = localStorage.getItem("token");
 
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function() {
-    navigator.serviceWorker
-      .register("../serviceWorker.js")
-      .then(() => console.log("service worker registered"))
-      .catch((err) => console.log("service worker not registered", err));
-  });
-}
-
 function setScripts() {
   const app = document.getElementById("app");
   const scripts = app.querySelectorAll("script");
