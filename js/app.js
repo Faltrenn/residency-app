@@ -1,5 +1,10 @@
-var role = localStorage.getItem("role");
-var token = localStorage.getItem("token");
+var role = null;
+var token = null;
+
+function refreshRoleAndToken() {
+  role = localStorage.getItem("role");
+  token = localStorage.getItem("token");
+}
 
 let routes = {
   "/": "../pages/home.html",
@@ -35,6 +40,7 @@ async function setRouteToApp(path) {
 }
 
 async function renderPage(path) {
+  refreshRoleAndToken();
   if (token) {
     const response = await fetch("http://localhost:8000/login/check", {
       method: "GET",
@@ -67,6 +73,10 @@ function navigateTo(path) {
   renderPage(path);
 }
 
+function reloadWindow() {
+  renderPage(window.location.pathname);
+}
+
 document.addEventListener("click", (event) => {
   const link = event.target.closest("a");
   if (link && link.getAttribute("href")) {
@@ -80,4 +90,4 @@ window.addEventListener("popstate", () => {
   renderPage(window.location.pathname);
 });
 
-renderPage(window.location.pathname);
+reloadWindow();
