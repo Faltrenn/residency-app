@@ -1,7 +1,29 @@
 var role = null;
 var token = null;
 
+async function veriifyToken() {
+  if (token) {
+    const response = await fetch("http://localhost:8000/login/check", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        token: token,
+      },
+    });
+    if (!response.ok) {
+      alert("Token expirado!");
+      token = null;
+      localStorage.clear();
+      return;
+    }
+    const data = await response.json();
+
+    localStorage.setItem("role", data["role"]);
+  }
+}
+
 function refreshRoleAndToken() {
+  veriifyToken();
   role = localStorage.getItem("role");
   token = localStorage.getItem("token");
 }
@@ -44,20 +66,6 @@ async function setRouteToApp(path, elementID) {
 
 async function renderPage(path) {
   refreshRoleAndToken();
-  if (token) {
-    const response = await fetch("http://localhost:8000/login/check", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        token: token,
-      },
-    });
-    if (!response.ok) {
-      alert("Token expirado!");
-      token = null;
-      localStorage.clear();
-    }
-  }
 
   if (token || path === "/login") {
     if (path in routes) {
