@@ -27,7 +27,7 @@ function setScripts(element) {
     }
 
     document.body.appendChild(newScript);
-    //document.body.removeChild(newScript);
+    document.body.removeChild(newScript);
   });
 }
 
