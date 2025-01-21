@@ -12,9 +12,12 @@ let routes = {
   "/login": "../pages/login.html",
 };
 
-function setScripts() {
-  const app = document.getElementById("app");
-  const scripts = app.querySelectorAll("script");
+async function loadPage(path) {
+  return await fetch(path).then((f) => f.text());
+}
+
+function setScripts(element) {
+  const scripts = element.querySelectorAll("script");
   scripts.forEach((oldScript) => {
     const newScript = document.createElement("script");
     if (oldScript.hasAttribute("src")) {
@@ -28,14 +31,14 @@ function setScripts() {
   });
 }
 
-async function setRouteToApp(path) {
-  const app = document.getElementById("app");
+async function setRouteToApp(path, elementID) {
+  const element = document.getElementById(elementID);
   try {
-    app.innerHTML = await fetch(path).then((f) => f.text());
-    setScripts();
+    element.innerHTML = await fetch(path).then((f) => f.text());
+    setScripts(element);
   } catch (e) {
     console.error("Error loading page:", e);
-    app.innerHTML = "<h1>Erro ao carregar a página</h1>";
+    element.innerHTML = "<h1>Erro ao carregar a página</h1>";
   }
 }
 
@@ -58,7 +61,7 @@ async function renderPage(path) {
 
   if (token || path === "/login") {
     if (path in routes) {
-      setRouteToApp(routes[path]);
+      setRouteToApp(routes[path], "app");
       return;
     }
     const app = document.getElementById("app");

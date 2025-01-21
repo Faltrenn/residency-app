@@ -1,9 +1,12 @@
+const ROLE_ROUTES = {
+  Admin: "../../pages/admin/index.html",
+};
+
 function logout() {
   localStorage.clear();
   reloadWindow();
 }
 
 if (role) {
-  const app = document.getElementById("home-app");
-  app.innerHTML += `<h1>${role}</h1>`;
+  setRouteToApp(ROLE_ROUTES[role], "home-app");
 }
