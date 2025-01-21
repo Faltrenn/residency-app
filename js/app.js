@@ -1,7 +1,7 @@
-var role = null;
-var token = null;
+var role = localStorage.getItem("role");
+var token = localStorage.getItem("token");
 
-async function veriifyToken() {
+async function verifyToken() {
   if (token) {
     const response = await fetch("http://localhost:8000/login/check", {
       method: "GET",
@@ -13,6 +13,7 @@ async function veriifyToken() {
     if (!response.ok) {
       alert("Token expirado!");
       token = null;
+      role = null;
       localStorage.clear();
       return;
     }
@@ -22,8 +23,9 @@ async function veriifyToken() {
   }
 }
 
-function refreshRoleAndToken() {
-  veriifyToken();
+async function refreshRoleAndToken() {
+  await verifyToken();
+
   role = localStorage.getItem("role");
   token = localStorage.getItem("token");
 }
@@ -65,7 +67,7 @@ async function setRouteToApp(path, elementID) {
 }
 
 async function renderPage(path) {
-  refreshRoleAndToken();
+  await refreshRoleAndToken();
 
   if (token || path === "/login") {
     if (path in routes) {
@@ -102,3 +104,4 @@ window.addEventListener("popstate", () => {
 });
 
 reloadWindow();
+
