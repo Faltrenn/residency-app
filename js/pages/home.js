@@ -6,6 +6,8 @@ var ROLE_ROUTES = {
 
 function logout() {
   localStorage.clear();
+  role = null;
+  token = null;
   reloadWindow();
 }
 
