@@ -32,3 +32,10 @@ async function login(event) {
     alert(`Não foi possível realizar o login. Tente novamente.\n${error}`);
   }
 }
+
+function logout() {
+  localStorage.clear();
+  role = null;
+  token = null;
+  reloadWindow();
+}

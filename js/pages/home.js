@@ -4,13 +4,6 @@ var ROLE_ROUTES = {
   Residente: "../../pages/resident/index.html",
 };
 
-function logout() {
-  localStorage.clear();
-  role = null;
-  token = null;
-  reloadWindow();
-}
-
 if (role) {
   setRouteToApp(ROLE_ROUTES[role], "home-app");
 }
