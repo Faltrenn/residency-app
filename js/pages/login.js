@@ -1,3 +1,5 @@
+document.getElementById("logout")?.remove();
+
 async function login(event) {
   event.preventDefault();
   const username = document.getElementById("username").value;
@@ -24,6 +26,8 @@ async function login(event) {
     role = data.role;
     token = data.token;
     navigateTo("/");
+    document.getElementById("navbar").innerHTML +=
+      '<button id = "logout" onclick="logout();">Log out</button>';
   } catch (error) {
     alert(`Não foi possível realizar o login. Tente novamente.\n${error}`);
   }

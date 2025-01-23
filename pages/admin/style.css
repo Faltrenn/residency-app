@@ -1,0 +1,20 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #0000ff;
+  border-radius: 10px;
+  font-size: 18pt;
+  width: 125px;
+  height: 125px;
+
+  color: #ffffff;
+  text-decoration: none;
+
+  &:hover {
+    background-color: #000099;
+    border-radius: 20px;
+  }
+}
+

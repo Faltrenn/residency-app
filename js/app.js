@@ -34,6 +34,7 @@ let routes = {
   "/": "../pages/home.html",
   "/home2": "../pages/home2.html",
   "/login": "../pages/login.html",
+  "/users": "../pages/users/index.html"
 };
 
 async function loadPage(path) {
