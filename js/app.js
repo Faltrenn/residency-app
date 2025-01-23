@@ -1,14 +1,13 @@
 import { navigate, registerRoute } from "./router.js";
 
 // Registrar todas as rotas antes de qualquer coisa.
-registerRoute("/", null,"../pages/home.html")
-registerRoute("/home2", null,"../pages/home2.html")
-registerRoute("/login", null,"../pages/login.html")
-registerRoute("/users", null,"../pages/users/index.html")
+registerRoute("/", null, "../pages/home.html");
+registerRoute("/home2", null, "../pages/home2.html");
+registerRoute("/login", null, "../pages/login.html");
+registerRoute("/users", null, "../pages/users/index.html");
 
 export var role = localStorage.getItem("role");
 export var token = localStorage.getItem("token");
-
 
 navigate("/login", "app");
 

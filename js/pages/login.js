@@ -1,5 +1,6 @@
-document.getElementById("logout")?.remove();
+document.getElementById("logout-btn")?.remove();
 
+console.log("Opa");
 async function login(event) {
   event.preventDefault();
   const username = document.getElementById("username").value;

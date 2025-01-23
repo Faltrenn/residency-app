@@ -42,7 +42,7 @@ export async function navigate(path, elementID) {
   const element = document.getElementById(elementID);
   try {
     element.innerHTML = await fetch(routes[path][1]).then((f) => f.text());
-    //setScripts(element);
+    setScripts(element);
   } catch (e) {
     console.error("Error loading page:", e);
     element.innerHTML = "<h1>Erro ao carregar a página</h1>";
