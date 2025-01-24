@@ -1,5 +1,5 @@
 import { ROLES_PATH } from "./app.js";
-import { refreshRoleAndToken, role, token } from "./pages/login.js";
+import { refreshRoleAndToken, role, token } from "../../pages/login/script.js";
 
 const routes = {}; // Rotas {path: [callback, filePath]}
 
@@ -38,22 +38,13 @@ function setScripts(element) {
 /**
  * Navegar para path
  * @param {string} path - Caminho da rota (ex: /login).
- * @param {int} elementID - Qual o id do elemento que a pagina será carregada.
+ * @param {string} elementID - Id do elemento onde a pagina será carregada.
  **/
-export async function navigate(path, elementID) {
-  await refreshRoleAndToken();
+export async function navigate(path, elementID, firstTime = true) {
+  if (firstTime) await refreshRoleAndToken();
 
-  navigateLogic(path, elementID);
-}
-
-/**
- * Navegar para path
- * @param {string} path - Caminho da rota (ex: /login).
- * @param {int} elementID - Qual o id do elemento que a pagina será carregada.
- **/
-async function navigateLogic(path, elementID) {
   if (!token && path != "/login") {
-    navigateLogic("/login", "app");
+    navigate("/login", "app");
     return;
   }
 
@@ -63,20 +54,20 @@ async function navigateLogic(path, elementID) {
       path === "/login" ||
       (Object.values(ROLES_PATH).includes(path) && path != `/${role}`)
     ) {
-      navigateLogic(`/${role}`, "app");
+      navigate(`/${role}`, "app", false);
       return;
     }
   }
 
   window.history.pushState({}, "", path);
-  renderPage(routes[path][1], elementID);
+  await renderPage(routes[path][1], elementID);
   if (routes[path]) routes[path][0]?.();
 }
 
 /**
  * Carrega a página em um elemento de id especificado.
  * @param {string} filePath - Caminho do arquivo HTML a ser carregado.
- * @param {string} elementID - Id de onde será carregada a página.
+ * @param {string} elementID - Id do elemento onde será carregada a página.
  **/
 export async function renderPage(filePath, elementID) {
   const element = document.getElementById(elementID);
@@ -88,3 +79,10 @@ export async function renderPage(filePath, elementID) {
     element.innerHTML = "<h1>Erro ao carregar a página</h1>";
   }
 }
+
+/**
+ * Recarrega a página sem recarregar a janela do navegador
+ *
+ */
+export const reloadWindow = (elementID) =>
+  navigate(window.location.pathname, elementID);
