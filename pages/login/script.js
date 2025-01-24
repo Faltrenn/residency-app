@@ -95,3 +95,13 @@ export function logout() {
   token = null;
   reloadWindow();
 }
+
+export function addLogoutButtonIfNotExists() {
+  if (!document.getElementById("btn-logout")) {
+    const btn = document.createElement("button");
+    btn.id = "btn-logout";
+    btn.textContent = "Logout";
+    btn.click = logout;
+    document.getElementById("navbar").appendChild(btn);
+  }
+}
