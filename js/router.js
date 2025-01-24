@@ -19,6 +19,9 @@ function setScripts(element) {
     } else {
       newScript.textContent = oldScript.textContent;
     }
+    if (oldScript.type) {
+      newScript.type = oldScript.type;
+    }
 
     document.body.appendChild(newScript);
     document.body.removeChild(newScript);

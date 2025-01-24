@@ -1,6 +1,9 @@
 document.getElementById("logout-btn")?.remove();
 
-console.log("Opa");
+document.getElementById("login-form").addEventListener("submit", (event) => {
+  login(event);
+});
+
 async function login(event) {
   event.preventDefault();
   const username = document.getElementById("username").value;
@@ -34,7 +37,7 @@ async function login(event) {
   }
 }
 
-function logout() {
+export function logout() {
   localStorage.clear();
   role = null;
   token = null;
