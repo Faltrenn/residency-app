@@ -2,7 +2,6 @@ import { login } from "./pages/login.js";
 import { navigate, registerRoute } from "./router.js";
 
 // Registrar todas as rotas antes de qualquer coisa.
-registerRoute("/", null, "../pages/home.html");
 registerRoute("/home2", null, "../pages/home2.html");
 registerRoute(
   "/login",
