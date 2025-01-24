@@ -13,6 +13,10 @@ export function registerRoute(path, callback, filePath) {
   routes[path] = [callback, filePath];
 }
 
+/**
+ * Executa os scripts da página.
+ * @param {element} element - Onde que os scripts estão para serem carregados.
+ **/
 function setScripts(element) {
   const scripts = element.querySelectorAll("script");
   scripts.forEach((oldScript) => {
@@ -69,6 +73,11 @@ async function navigateLogic(path, elementID) {
   if (routes[path]) routes[path][0]?.();
 }
 
+/**
+ * Carrega a página em um elemento de id especificado.
+ * @param {string} filePath - Caminho do arquivo HTML a ser carregado.
+ * @param {string} elementID - Id de onde será carregada a página.
+ **/
 export async function renderPage(filePath, elementID) {
   const element = document.getElementById(elementID);
   try {

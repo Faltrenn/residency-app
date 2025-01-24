@@ -1,6 +1,12 @@
 export let role = localStorage.getItem("role");
 export let token = localStorage.getItem("token");
 
+/**
+ * Verifica na api se o token ainda está válido.
+ *
+ * @async
+ * @returns {Promise<void>}
+ */
 async function verifyToken() {
   if (token) {
     const response = await fetch("http://localhost:8000/login/check", {
@@ -23,6 +29,12 @@ async function verifyToken() {
   }
 }
 
+/**
+ * Atualiza role e token.
+ *
+ * @async
+ * @returns {Promise<void>}
+ */
 export async function refreshRoleAndToken() {
   await verifyToken();
 
@@ -30,6 +42,14 @@ export async function refreshRoleAndToken() {
   token = localStorage.getItem("token");
 }
 
+/**
+ * Tenta realizar o login, se bem sucessido, recebe token e role que são armazenados, caso contrário, erro.
+ *
+ * @async
+ * @param {event} event - Evento de submit do form.
+ * @throws {Error} - Caso o login der errado, pode ser: usuário e senha incorretos, erro interno da api e api fora do ar.
+ * @returns {Promise<void>}
+ */
 export async function login(event) {
   event.preventDefault();
   const username = document.getElementById("username").value;
@@ -63,6 +83,10 @@ export async function login(event) {
   }
 }
 
+/**
+ * Faz o logout removendo role e token da memória.
+ *
+ */
 export function logout() {
   localStorage.clear();
   role = null;
