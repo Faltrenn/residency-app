@@ -1,4 +1,4 @@
-import { navigate } from "../../src/js/router.js";
+import {reloadWindow, navigate } from "../../src/js/router.js";
 
 export let role = localStorage.getItem("role");
 export let token = localStorage.getItem("token");
@@ -77,9 +77,7 @@ export async function login(event) {
     localStorage.setItem("role", data.role);
     role = data.role;
     token = data.token;
-    navigate("/");
-    document.getElementById("navbar").innerHTML +=
-      '<button id = "logout" onclick="logout();">Log out</button>';
+    navigate(`/${role}`, "app");
   } catch (error) {
     alert(`Não foi possível realizar o login. Tente novamente.\n${error}`);
   }
@@ -93,7 +91,7 @@ export function logout() {
   localStorage.clear();
   role = null;
   token = null;
-  reloadWindow();
+  reloadWindow("app");
 }
 
 export function addLogoutButtonIfNotExists() {
@@ -101,7 +99,7 @@ export function addLogoutButtonIfNotExists() {
     const btn = document.createElement("button");
     btn.id = "btn-logout";
     btn.textContent = "Logout";
-    btn.click = logout;
+    btn.addEventListener("click", () => {logout();})
     document.getElementById("navbar").appendChild(btn);
   }
 }
