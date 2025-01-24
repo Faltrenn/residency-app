@@ -2,7 +2,7 @@ import { login } from "./pages/login.js";
 import { navigate, registerRoute } from "./router.js";
 import { setLinksLogic } from "./utils.js";
 
-// Registrar todas as rotas antes de qualquer coisa.
+ //Registrar todas as rotas antes de qualquer coisa.
 registerRoute("/home2", null, "../pages/home2.html");
 registerRoute(
   "/login",

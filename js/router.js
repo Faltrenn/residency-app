@@ -1,4 +1,4 @@
-import { refreshRoleAndToken, role, token } from "./pages/login.js";
+import { login, refreshRoleAndToken, role, token } from "./pages/login.js";
 
 const ROLES = ["/Admin", "/Professor", "/Resident"];
 const routes = {}; // Rotas {path: [callback, filePath]}
@@ -40,7 +40,7 @@ export async function navigate(path, elementID) {
   await refreshRoleAndToken();
 
   if (!token) {
-    navigate("/login", "app");
+    if (path != "/login") navigate("/login", "app");
     return;
   }
 
