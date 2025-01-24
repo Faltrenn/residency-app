@@ -51,6 +51,7 @@ export async function refreshRoleAndToken() {
  * @returns {Promise<void>}
  */
 export async function login(event) {
+  console.log("opa")
   event.preventDefault();
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
