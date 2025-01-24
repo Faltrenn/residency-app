@@ -1,6 +1,6 @@
-import { login, refreshRoleAndToken, role, token } from "./pages/login.js";
+import { ROLES_PATH } from "./app.js";
+import { refreshRoleAndToken, role, token } from "./pages/login.js";
 
-const ROLES = ["/Admin", "/Professor", "/Resident"];
 const routes = {}; // Rotas {path: [callback, filePath]}
 
 /**
@@ -39,19 +39,29 @@ function setScripts(element) {
 export async function navigate(path, elementID) {
   await refreshRoleAndToken();
 
-  if (!token) {
-    if (path != "/login") navigate("/login", "app");
+  navigateLogic(path, elementID);
+}
+
+/**
+ * Navegar para path
+ * @param {string} path - Caminho da rota (ex: /login).
+ * @param {int} elementID - Qual o id do elemento que a pagina será carregada.
+ **/
+async function navigateLogic(path, elementID) {
+  if (!token && path != "/login") {
+    navigateLogic("/login", "app");
     return;
   }
 
-  if (!(path in routes)) {
-    navigate(`/${role}`, "app");
-    return;
-  }
-
-  if (path === "/login" || (path in ROLES && path != role)) {
-    navigate(`/${role}`, "app");
-    return;
+  if (token) {
+    if (
+      !(path in routes) ||
+      path === "/login" ||
+      (Object.values(ROLES_PATH).includes(path) && path != `/${role}`)
+    ) {
+      navigateLogic(`/${role}`, "app");
+      return;
+    }
   }
 
   window.history.pushState({}, "", path);

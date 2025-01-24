@@ -2,23 +2,37 @@ import { login } from "./pages/login.js";
 import { navigate, registerRoute } from "./router.js";
 import { setLinksLogic } from "./utils.js";
 
- //Registrar todas as rotas antes de qualquer coisa.
-registerRoute("/home2", null, "../pages/home2.html");
-registerRoute(
-  "/login",
-  () => {
-    document.getElementById("logout-btn")?.remove();
+export const ROLES_PATH = {
+  ADMIN: "/Admin",
+  PROFESSOR: "/Professor",
+  RESIDENT: "/Resident",
+};
 
-    document
-      .getElementById("login-form")
-      ?.addEventListener("submit", (event) => {
-        login(event);
-      });
-  },
-  "../pages/login.html",
-);
-registerRoute("/users", null, "../pages/users/index.html");
-registerRoute("/Admin", null, "../pages/admin/index.html");
+// [[path, callback, filePath]...]
+// path é o caminho da rota
+// callback é executado assim que a página carregar
+// filepath é o caminho do html a ser carregado
+const ROUTES = [
+  ["/home2", null, "../pages/home2.html"],
+  [
+    "/login",
+    () => {
+      document.getElementById("logout-btn")?.remove();
+
+      document
+        .getElementById("login-form")
+        ?.addEventListener("submit", (event) => {
+          login(event);
+        });
+    },
+    "../pages/login.html",
+  ],
+  ["/users", null, "../pages/users/index.html"],
+  [ROLES_PATH.ADMIN, null, "../pages/admin/index.html"],
+];
+
+// Registrar todas as rotas antes de qualquer coisa.
+ROUTES.forEach((r) => registerRoute(...r));
 
 navigate(window.location.pathname, "app");
 
