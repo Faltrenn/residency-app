@@ -39,15 +39,13 @@ function setScripts(element) {
 export async function navigate(path, elementID) {
   await refreshRoleAndToken();
 
-  if (!(path in routes)) {
-    console.log(path)
-    const app = document.getElementById(elementID);
-    app.innerHTML = `<h1>404 Not Found</h1>`;
+  if (!token) {
+    navigate("/login", "app");
     return;
   }
 
-  if (!token) {
-    navigate("/login", "app");
+  if (!(path in routes)) {
+    navigate(`/${role}`, "app");
     return;
   }
 

@@ -1,5 +1,6 @@
 import { login } from "./pages/login.js";
 import { navigate, registerRoute } from "./router.js";
+import { setLinksLogic } from "./utils.js";
 
 // Registrar todas as rotas antes de qualquer coisa.
 registerRoute("/home2", null, "../pages/home2.html");
@@ -20,6 +21,10 @@ registerRoute("/users", null, "../pages/users/index.html");
 registerRoute("/Admin", null, "../pages/admin/index.html");
 
 navigate(window.location.pathname, "app");
+
+setLinksLogic("main", (path) => {
+  navigate(path, "app");
+});
 
 //async function verifyToken() {
 //  if (token) {
