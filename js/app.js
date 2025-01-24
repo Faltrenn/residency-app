@@ -1,15 +1,26 @@
+import { login } from "./pages/login.js";
 import { navigate, registerRoute } from "./router.js";
 
 // Registrar todas as rotas antes de qualquer coisa.
 registerRoute("/", null, "../pages/home.html");
 registerRoute("/home2", null, "../pages/home2.html");
-registerRoute("/login", null, "../pages/login.html");
+registerRoute(
+  "/login",
+  () => {
+    document.getElementById("logout-btn")?.remove();
+
+    document
+      .getElementById("login-form")
+      ?.addEventListener("submit", (event) => {
+        login(event);
+      });
+  },
+  "../pages/login.html",
+);
 registerRoute("/users", null, "../pages/users/index.html");
+registerRoute("/Admin", null, "../pages/admin/index.html");
 
-export var role = localStorage.getItem("role");
-export var token = localStorage.getItem("token");
-
-navigate("/login", "app");
+navigate(window.location.pathname, "app");
 
 //async function verifyToken() {
 //  if (token) {

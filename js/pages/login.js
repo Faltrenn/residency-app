@@ -1,10 +1,36 @@
-document.getElementById("logout-btn")?.remove();
+export let role = localStorage.getItem("role");
+export let token = localStorage.getItem("token");
 
-document.getElementById("login-form").addEventListener("submit", (event) => {
-  login(event);
-});
+async function verifyToken() {
+  if (token) {
+    const response = await fetch("http://localhost:8000/login/check", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        token: token,
+      },
+    });
+    if (!response.ok) {
+      alert("Token expirado!");
+      token = null;
+      role = null;
+      localStorage.clear();
+      return;
+    }
+    const data = await response.json();
 
-async function login(event) {
+    localStorage.setItem("role", data["role"]);
+  }
+}
+
+export async function refreshRoleAndToken() {
+  await verifyToken();
+
+  role = localStorage.getItem("role");
+  token = localStorage.getItem("token");
+}
+
+export async function login(event) {
   event.preventDefault();
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;

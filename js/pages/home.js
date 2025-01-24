@@ -1,3 +1,6 @@
+import { navigate } from "../router.js";
+import { role } from "./login.js";
+
 var ROLE_ROUTES = {
   Admin: "../../pages/admin/index.html",
   Professor: "../../pages/professor/index.html",
@@ -5,5 +8,5 @@ var ROLE_ROUTES = {
 };
 
 if (role) {
-  setRouteToApp(ROLE_ROUTES[role], "home-app");
+  navigate(`/${role}`, "home-app");
 }
