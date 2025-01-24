@@ -1,4 +1,5 @@
 import { addLogoutButtonIfNotExists, login } from "../../pages/login/script.js";
+import { start } from "../../pages/users/script.js";
 import { navigate, registerRoute } from "./router.js";
 import { setLinksLogic } from "./utils.js";
 
@@ -26,7 +27,7 @@ const ROUTES = [
     },
     "pages/login/index.html",
   ],
-  ["/users", null, "pages/users/index.html"],
+  ["/users", start, "pages/users/index.html"],
   [ROLES_PATH.ADMIN, null, "pages/admin/index.html"],
 ];
 
