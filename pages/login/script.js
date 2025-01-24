@@ -1,3 +1,5 @@
+import { navigate } from "../../src/js/router.js";
+
 export let role = localStorage.getItem("role");
 export let token = localStorage.getItem("token");
 
@@ -51,7 +53,6 @@ export async function refreshRoleAndToken() {
  * @returns {Promise<void>}
  */
 export async function login(event) {
-  console.log("opa")
   event.preventDefault();
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
@@ -76,7 +77,7 @@ export async function login(event) {
     localStorage.setItem("role", data.role);
     role = data.role;
     token = data.token;
-    navigateTo("/");
+    navigate("/");
     document.getElementById("navbar").innerHTML +=
       '<button id = "logout" onclick="logout();">Log out</button>';
   } catch (error) {
