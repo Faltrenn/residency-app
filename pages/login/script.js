@@ -1,4 +1,5 @@
-import {reloadWindow, navigate } from "../../src/js/router.js";
+import { navigate } from "../../src/js/router.js";
+import { fetchAPI } from "../../src/js/utils.js";
 
 export let role = localStorage.getItem("role");
 export let token = localStorage.getItem("token");
@@ -20,9 +21,7 @@ async function verifyToken() {
     });
     if (!response.ok) {
       alert("Token expirado!");
-      token = null;
-      role = null;
-      localStorage.clear();
+      logout();
       return;
     }
     const data = await response.json();
@@ -58,20 +57,8 @@ export async function login(event) {
   const password = document.getElementById("password").value;
 
   try {
-    const response = await fetch("http://localhost:8000/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ user: username, pass: password }),
-    });
+    const data = await fetchAPI("/login", "POST", {}, { user: username, pass: password });
 
-    if (!response.ok) {
-      // Erro se a resposta não for um status 2xx
-      throw new Error(`Erro: ${response.status} - ${response.statusText}`);
-    }
-
-    const data = await response.json();
     alert(`Token recebido: ${data.token}`);
     localStorage.setItem("token", data.token);
     localStorage.setItem("role", data.role);
@@ -91,7 +78,7 @@ export function logout() {
   localStorage.clear();
   role = null;
   token = null;
-  reloadWindow("app");
+  navigate("/login", "app");
 }
 
 export function addLogoutButtonIfNotExists() {
@@ -99,7 +86,9 @@ export function addLogoutButtonIfNotExists() {
     const btn = document.createElement("button");
     btn.id = "btn-logout";
     btn.textContent = "Logout";
-    btn.addEventListener("click", () => {logout();})
+    btn.addEventListener("click", () => {
+      logout();
+    });
     document.getElementById("navbar").appendChild(btn);
   }
 }

@@ -1,5 +1,5 @@
 import { ROLES_PATH } from "./app.js";
-import { refreshRoleAndToken, role, token } from "../../pages/login/script.js";
+import { addLogoutButtonIfNotExists, refreshRoleAndToken, role, token } from "../../pages/login/script.js";
 
 const routes = {}; // Rotas {path: [callback, filePath]}
 
@@ -70,6 +70,7 @@ export async function navigate(path, elementID, firstTime = true) {
  * @param {string} elementID - Id do elemento onde será carregada a página.
  **/
 export async function renderPage(filePath, elementID) {
+  addLogoutButtonIfNotExists();
   const element = document.getElementById(elementID);
   try {
     element.innerHTML = await fetch(filePath).then((f) => f.text());
@@ -79,10 +80,3 @@ export async function renderPage(filePath, elementID) {
     element.innerHTML = "<h1>Erro ao carregar a página</h1>";
   }
 }
-
-/**
- * Recarrega a página sem recarregar a janela do navegador
- *
- */
-export const reloadWindow = (elementID) =>
-  navigate(window.location.pathname, elementID);

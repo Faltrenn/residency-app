@@ -1,4 +1,4 @@
-import { addLogoutButtonIfNotExists, login } from "../../pages/login/script.js";
+import { login } from "../../pages/login/script.js";
 import { start } from "../../pages/users/script.js";
 import { navigate, registerRoute } from "./router.js";
 import { setLinksLogic } from "./utils.js";
@@ -40,4 +40,3 @@ setLinksLogic("main", (path) => {
   navigate(path, "app");
 });
 
-addLogoutButtonIfNotExists();
