@@ -5,8 +5,8 @@ export async function addUser(event) {
   event.preventDefault();
 
   const name = document.getElementById("name").value;
-  const institution = document.getElementById("institution").value;
-  const role = document.getElementById("role").value;
+  const institution = document.getElementById("institution-select").value;
+  const role = document.getElementById("role-select").value;
   const pass = document.getElementById("pass").value;
 
   try {
