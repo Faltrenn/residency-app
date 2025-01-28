@@ -1,0 +1,38 @@
+<div>
+  <h1>Criar Usuário</h1>
+  <form id="add-user-form" action="/user" method="post">
+    <div>
+      <label for="name">Nome</label>
+      <input type="text" id="name" name="name" required />
+    </div>
+
+    <div>
+      <label for="institution">Instituição</label>
+      <select id="institution" name="institution" required>
+        <option value="">Selecione...</option>
+        <option value="ins1">Instituição 1</option>
+        <option value="ins2">Instituição 2</option>
+        <option value="ins3">Instituição 3</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="role">Função</label>
+      <select id="role" name="role" required>
+        <option value="">Selecione...</option>
+        <option value="administrador">Administrador</option>
+        <option value="usuario">Usuário</option>
+        <option value="visitante">Visitante</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="pass">Senha</label>
+      <input type="password" id="pass" name="pass" required />
+    </div>
+
+    <div>
+      <button type="submit">Criar Usuário</button>
+    </div>
+  </form>
+</div>

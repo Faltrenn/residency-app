@@ -1,3 +1,4 @@
+import { addUser } from "../../pages/add-user/script.js";
 import { login } from "../../pages/login/script.js";
 import { start } from "../../pages/users/script.js";
 import { navigate, registerRoute } from "./router.js";
@@ -29,6 +30,17 @@ const ROUTES = [
   ],
   ["/users", start, "pages/users/index.html"],
   [ROLES_PATH.ADMIN, null, "pages/admin/index.html"],
+  [
+    "/add-user",
+    () => {
+      document
+        .getElementById("add-user-form")
+        .addEventListener("submit", (event) => {
+          addUser(event);
+        });
+    },
+    "pages/add-user/index.html",
+  ],
 ];
 
 // Registrar todas as rotas antes de qualquer coisa.
@@ -39,4 +51,3 @@ navigate(window.location.pathname, "app");
 setLinksLogic("main", (path) => {
   navigate(path, "app");
 });
-

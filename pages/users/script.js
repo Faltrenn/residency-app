@@ -9,7 +9,8 @@ export async function start() {
   const data = await fetchUsers();
   data.forEach(element => {
     let tr = document.createElement("tr");
-    for (const key in element) {
+    const keys = ["id", "name", "institution", "role", "pass"]
+    for (const key of keys) {
       let td = document.createElement("td");
       td.textContent = element[key];
 
