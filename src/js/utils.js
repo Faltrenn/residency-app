@@ -42,7 +42,8 @@ export async function fetchAPI(path, method, headers, body) {
     throw new Error(`Erro: ${response.status} - ${response.statusText}`);
   }
 
-  return await response.json();
+  if ((response.headers.get("Content-Type") || "") == "application/json")
+    return await response.json();
 }
 
 /**
@@ -54,4 +55,3 @@ export async function fetchAPI(path, method, headers, body) {
 export const fetchUsers = async () => {
   return await fetchAPI("/users", "get", { token: token });
 };
-
