@@ -1,16 +1,13 @@
 import { fetchAPI, fetchUsers } from "../../src/js/utils.js";
 
-/**
- * Executa sempre que a pagina users é carregada.
- *
- */
-export async function start() {
-  const ut = document.getElementById("users-table");
-  ut.getElementsByTagName("tbody")[0]?.remove();
-  const tbody = document.createElement("tbody");
-  ut.appendChild(tbody);
+let runned = false;
+let users = [];
 
-  let data = await fetchUsers();
+function showTable(table, data) {
+  table.getElementsByTagName("tbody")[0].remove();
+  const tbody = document.createElement("tbody");
+  table.appendChild(tbody);
+
   data.forEach((element) => {
     let tr = document.createElement("tr");
     const keys = ["id", "name", "institution", "role", "pass"];
@@ -33,6 +30,29 @@ export async function start() {
     tr.appendChild(td);
     tbody.appendChild(tr);
   });
+}
+/**
+ * Executa sempre que a pagina users é carregada.
+ *
+ */
+export async function start() {
+  const tb = document
+    .getElementById("users-table")
+  if (!runned) {
+    const search = document.getElementById("search");
+    search.addEventListener("input", (event) => {
+      const text = event.target.value;
+      let sUsers = [];
+      users.forEach((element) => {
+        if (element["name"].includes(text)) sUsers.push(element);
+      });
+
+      showTable(tb, sUsers);
+    });
+    runned = true;
+  }
+  users = await fetchUsers();
+  showTable(tb, users);
 }
 
 export async function deleteUser(id) {
