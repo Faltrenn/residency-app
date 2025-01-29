@@ -1,7 +1,7 @@
 import { addUser } from "../../pages/add-user/script.js";
 import { login, token } from "../../pages/login/script.js";
 import { start } from "../../pages/users/script.js";
-import { navigate, registerRoute } from "./router.js";
+import { navigate, navigateBackwards, registerRoute } from "./router.js";
 import { fetchAPI, setLinksLogic } from "./utils.js";
 
 export const ROLES_PATH = {
@@ -49,7 +49,12 @@ const ROUTES = [
         rolesSelect.appendChild(o);
       });
 
-      const institutions = await fetchAPI("/institutions", "GET", { token: token }, null);
+      const institutions = await fetchAPI(
+        "/institutions",
+        "GET",
+        { token: token },
+        null,
+      );
 
       const institutionSelect = document.getElementById("institution-select");
       institutions.forEach((institution) => {
@@ -70,4 +75,8 @@ navigate(window.location.pathname, "app");
 
 setLinksLogic("main", (path) => {
   navigate(path, "app");
+});
+
+window.addEventListener("popstate", function() {
+  navigateBackwards();
 });

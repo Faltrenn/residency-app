@@ -57,7 +57,13 @@ export async function login(event) {
   const password = document.getElementById("password").value;
 
   try {
-    const data = await fetchAPI("/login", "POST", {}, { user: username, pass: password });
+    const data = await fetchAPI(
+      "/login",
+      "POST",
+      {},
+      { user: username, pass: password },
+    );
+    console.log(data)
 
     alert(`Token recebido: ${data.token}`);
     localStorage.setItem("token", data.token);

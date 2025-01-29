@@ -64,6 +64,32 @@ export async function navigate(path, elementID, firstTime = true) {
   if (routes[path]) routes[path][0]?.();
 }
 
+export async function navigateBackwards(firstTime = true) {
+  if (firstTime) await refreshRoleAndToken();
+
+  const path = window.location.pathname;
+
+  if (!token && path != "/login") {
+    navigate("/login", "app");
+    return;
+  }
+
+  if (token) {
+    if (
+      !(path in routes) ||
+      path === "/login" ||
+      (Object.values(ROLES_PATH).includes(path) && path != `/${role}`)
+    ) {
+      navigate(`/${role}`, "app", false);
+      return;
+    }
+  }
+
+  await renderPage(routes[path][1], "app");
+  if (routes[path]) routes[path][0]?.();
+  
+}
+
 /**
  * Carrega a página em um elemento de id especificado.
  * @param {string} filePath - Caminho do arquivo HTML a ser carregado.
