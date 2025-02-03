@@ -1,4 +1,4 @@
-import { addUser } from "../../pages/add-user/script.js";
+import { addUser, updateUser } from "../../pages/add-user/script.js";
 import { login, token } from "../../pages/login/script.js";
 import { start } from "../../pages/users/script.js";
 import { navigate, navigateBackwards, registerRoute } from "./router.js";
@@ -65,6 +65,49 @@ const ROUTES = [
       });
     },
     "pages/add-user/index.html",
+  ],
+  [
+    "/update-user",
+    async (user) => {
+      document
+        .getElementById("add-user-form")
+        .addEventListener("submit", (event) => {
+          updateUser(event);
+        });
+
+      const roles = await fetchAPI("/roles", "GET", { token: token }, null);
+
+      const rolesSelect = document.getElementById("role-select");
+      roles.forEach((role) => {
+        const o = document.createElement("option");
+        o.innerText = role["title"];
+        o.value = role["title"];
+        rolesSelect.appendChild(o);
+      });
+
+      const institutions = await fetchAPI(
+        "/institutions",
+        "GET",
+        { token: token },
+        null,
+      );
+
+      const institutionSelect = document.getElementById("institution-select");
+      institutions.forEach((institution) => {
+        const o = document.createElement("option");
+        o.innerText = `${institution["short_name"]} - ${institution["name"]}`;
+        o.value = institution["short_name"];
+        institutionSelect.appendChild(o);
+      });
+
+      document.getElementById("id").value = user["id"];
+      document.getElementById("name").value = user["name"];
+      document.getElementById("institution-select").value = user["institution"];
+      document.getElementById("role-select").value = user["role"];
+      console.log(user["role"])
+      document.getElementById("pass").value = user["pass"];
+    },
+    "pages/update-user/index.html",
   ],
 ];
 

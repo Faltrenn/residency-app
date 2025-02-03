@@ -40,11 +40,11 @@ function setScripts(element) {
  * @param {string} path - Caminho da rota (ex: /login).
  * @param {string} elementID - Id do elemento onde a pagina será carregada.
  **/
-export async function navigate(path, elementID, firstTime = true) {
+export async function navigate(path, elementID, data = null, firstTime = true) {
   if (firstTime) await refreshRoleAndToken();
 
   if (!token && path != "/login") {
-    navigate("/login", "app");
+    navigate("/login", "app", data, false);
     return;
   }
 
@@ -61,7 +61,7 @@ export async function navigate(path, elementID, firstTime = true) {
 
   window.history.pushState({}, "", path);
   await renderPage(routes[path][1], elementID);
-  if (routes[path]) routes[path][0]?.();
+  if (routes[path]) routes[path][0]?.(data);
 }
 
 export async function navigateBackwards(firstTime = true) {

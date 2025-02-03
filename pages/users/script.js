@@ -1,3 +1,4 @@
+import { navigate } from "../../src/js/router.js";
 import { fetchAPI, fetchUsers } from "../../src/js/utils.js";
 
 let runned = false;
@@ -27,7 +28,16 @@ function showTable(table, data) {
     td.appendChild(btn);
     tr.classList.add("tdata");
 
+    let td2 = document.createElement("td");
+    let btn2 = document.createElement("button");
+    btn2.onclick = () => {
+      navigate("/update-user", "app", element);
+    };
+    btn2.textContent = "UPD";
+    td2.appendChild(btn2);
+
     tr.appendChild(td);
+    tr.appendChild(td2);
     tbody.appendChild(tr);
   });
 }
@@ -36,8 +46,7 @@ function showTable(table, data) {
  *
  */
 export async function start() {
-  const tb = document
-    .getElementById("users-table")
+  const tb = document.getElementById("users-table");
   if (!runned) {
     const search = document.getElementById("search");
     search.addEventListener("input", (event) => {
