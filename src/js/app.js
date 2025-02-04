@@ -1,3 +1,4 @@
+import { addInstitution } from "../../pages/add-institution/script.js";
 import { addUser, updateUser } from "../../pages/add-user/script.js";
 import { institutionsStart } from "../../pages/institutions/script.js";
 import { login, token } from "../../pages/login/script.js";
@@ -110,6 +111,17 @@ const ROUTES = [
     "pages/update-user/index.html",
   ],
   ["/institutions", institutionsStart, "pages/institutions/index.html"],
+  [
+    "/add-institution",
+    async () => {
+      document
+        .getElementById("add-institution-form")
+        .addEventListener("submit", (event) => {
+          addInstitution(event);
+        });
+    },
+    "pages/add-institution/index.html",
+  ],
 ];
 
 // Registrar todas as rotas antes de qualquer coisa.
