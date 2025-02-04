@@ -59,3 +59,6 @@ export const fetchUsers = async () => {
 export const fetchInstitutions = async () => {
   return await fetchAPI("/institutions", "get", { token: token });
 };
+export const fetchRoles = async () => {
+  return await fetchAPI("/roles", "get", { token: token });
+};

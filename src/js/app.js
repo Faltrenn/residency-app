@@ -1,7 +1,11 @@
-import { addInstitution, updateInstitution } from "../../pages/add-institution/script.js";
+import {
+  addInstitution,
+  updateInstitution,
+} from "../../pages/add-institution/script.js";
 import { addUser, updateUser } from "../../pages/add-user/script.js";
 import { institutionsStart } from "../../pages/institutions/script.js";
 import { login, token } from "../../pages/login/script.js";
+import { rolesStart } from "../../pages/roles/script.js";
 import { start } from "../../pages/users/script.js";
 import { navigate, navigateBackwards, registerRoute } from "./router.js";
 import { fetchAPI, setLinksLogic } from "./utils.js";
@@ -136,6 +140,7 @@ const ROUTES = [
     },
     "pages/update-institution/index.html",
   ],
+  ["/roles", rolesStart, "pages/roles/index.html"],
 ];
 
 // Registrar todas as rotas antes de qualquer coisa.
