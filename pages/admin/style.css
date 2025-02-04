@@ -6,8 +6,8 @@
   background-color: #0000ff;
   border-radius: 10px;
   font-size: 18pt;
-  width: 125px;
-  height: 125px;
+  width: 135px;
+  height: 135px;
 
   color: #ffffff;
   text-decoration: none;
@@ -18,3 +18,15 @@
   }
 }
 
+div#admin-app {
+  display: flex;
+  flex-direction: row;
+}
+
+div#admin-app > a{
+  margin-right: 10px;
+}
+
+div#admin-app > a:last-child{
+  margin-right: 0px;
+}

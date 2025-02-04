@@ -1,4 +1,5 @@
 import { addUser, updateUser } from "../../pages/add-user/script.js";
+import { institutionsStart } from "../../pages/institutions/script.js";
 import { login, token } from "../../pages/login/script.js";
 import { start } from "../../pages/users/script.js";
 import { navigate, navigateBackwards, registerRoute } from "./router.js";
@@ -104,11 +105,11 @@ const ROUTES = [
       document.getElementById("name").value = user["name"];
       document.getElementById("institution-select").value = user["institution"];
       document.getElementById("role-select").value = user["role"];
-      console.log(user["role"])
       document.getElementById("pass").value = user["pass"];
     },
     "pages/update-user/index.html",
   ],
+  ["/institutions", institutionsStart, "pages/institutions/index.html"],
 ];
 
 // Registrar todas as rotas antes de qualquer coisa.

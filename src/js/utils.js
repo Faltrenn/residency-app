@@ -32,6 +32,7 @@ export async function fetchAPI(path, method, headers, body) {
     method: method.toUpperCase(),
     headers: {
       "Content-Type": "application/json",
+      "token": token,
       ...headers,
     },
     ...(body ? { body: JSON.stringify(body) } : {}),
@@ -54,4 +55,7 @@ export async function fetchAPI(path, method, headers, body) {
  */
 export const fetchUsers = async () => {
   return await fetchAPI("/users", "get", { token: token });
+};
+export const fetchInstitutions = async () => {
+  return await fetchAPI("/institutions", "get", { token: token });
 };

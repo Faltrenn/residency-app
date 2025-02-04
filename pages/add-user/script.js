@@ -28,7 +28,6 @@ export async function updateUser(event) {
   const name = document.getElementById("name").value;
   const institution = document.getElementById("institution-select").value;
   const role = document.getElementById("role-select").value;
-  console.log(role)
   const pass = document.getElementById("pass").value;
 
   try {
