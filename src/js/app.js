@@ -116,7 +116,7 @@ const ROUTES = [
   ],
   ["/institutions", institutionsStart, "pages/institutions/index.html"],
   [
-    "/update-institution",
+    "/add-institution",
     async () => {
       document
         .getElementById("add-institution-form")
