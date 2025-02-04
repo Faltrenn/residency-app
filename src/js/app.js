@@ -168,7 +168,18 @@ const ROUTES = [
     },
     "pages/update-role/index.html",
   ],
-  ["/questions", questionsStart, "pages/questions/index.html" ]
+  ["/questions", questionsStart, "pages/questions/index.html"],
+  [
+    "/add-question",
+    async () => {
+      document
+        .getElementById("add-question-form")
+        .addEventListener("submit", (event) => {
+          addRole(event);
+        });
+    },
+    "pages/add-question/index.html",
+  ],
 ];
 
 // Registrar todas as rotas antes de qualquer coisa.
