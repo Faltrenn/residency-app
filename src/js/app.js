@@ -2,6 +2,7 @@ import {
   addInstitution,
   updateInstitution,
 } from "../../pages/add-institution/script.js";
+import { addRole, updateRole } from "../../pages/add-role/script.js";
 import { addUser, updateUser } from "../../pages/add-user/script.js";
 import { institutionsStart } from "../../pages/institutions/script.js";
 import { login, token } from "../../pages/login/script.js";
@@ -141,6 +142,31 @@ const ROUTES = [
     "pages/update-institution/index.html",
   ],
   ["/roles", rolesStart, "pages/roles/index.html"],
+  [
+    "/add-role",
+    async () => {
+      document
+        .getElementById("add-role-form")
+        .addEventListener("submit", (event) => {
+          addRole(event);
+        });
+    },
+    "pages/add-role/index.html",
+  ],
+  [
+    "/update-role",
+    async (role) => {
+      document
+        .getElementById("add-role-form")
+        .addEventListener("submit", (event) => {
+          updateRole(event);
+        });
+
+      document.getElementById("last_title").value = role["title"];
+      document.getElementById("title").value = role["title"];
+    },
+    "pages/update-role/index.html",
+  ],
 ];
 
 // Registrar todas as rotas antes de qualquer coisa.

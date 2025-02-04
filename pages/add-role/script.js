@@ -1,37 +1,36 @@
 import { fetchAPI } from "../../src/js/utils.js";
 
-export async function addInstitution(event) {
+export async function addRole(event) {
   event.preventDefault();
 
-  const short_name = document.getElementById("short_name").value;
-  const name = document.getElementById("name").value;
+  const title = document.getElementById("title").value;
 
   try {
     await fetchAPI(
-      "/institutions",
+      "/roles",
       "POST",
       {},
-      { short_name: short_name, name: name },
+      { title: title },
     );
   } catch (error) {
-    alert(`Não foi possível adicionar o instituição. Tente novamente.\n${error}`);
+    alert(`Não foi possível adicionar o cargo. Tente novamente.\n${error}`);
   }
 }
 
-export async function updateInstitution(event) {
+export async function updateRole(event) {
   event.preventDefault();
 
-  const short_name = document.getElementById("short_name").value;
-  const name = document.getElementById("name").value;
+  const title = document.getElementById("title").value;
+  const last_title = document.getElementById("last_title").value;
 
   try {
     await fetchAPI(
-      "/institutions",
+      "/roles",
       "PUT",
       {},
-      { short_name: short_name, name: name },
+      { title: title, last_title: last_title },
     );
   } catch (error) {
-    alert(`Não foi possível adicionar o instituição. Tente novamente.\n${error}`);
+    alert(`Não foi possível adicionar o cargo. Tente novamente.\n${error}`);
   }
 }
