@@ -31,7 +31,7 @@ function showTable(table, data) {
     let td2 = document.createElement("td");
     let btn2 = document.createElement("button");
     btn2.onclick = () => {
-      navigate("/update-institutions", "app", element);
+      navigate("/update-institution", "app", element);
     };
     btn2.textContent = "UPD";
     td2.appendChild(btn2);

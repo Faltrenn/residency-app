@@ -1,4 +1,4 @@
-import { addInstitution } from "../../pages/add-institution/script.js";
+import { addInstitution, updateInstitution } from "../../pages/add-institution/script.js";
 import { addUser, updateUser } from "../../pages/add-user/script.js";
 import { institutionsStart } from "../../pages/institutions/script.js";
 import { login, token } from "../../pages/login/script.js";
@@ -112,7 +112,7 @@ const ROUTES = [
   ],
   ["/institutions", institutionsStart, "pages/institutions/index.html"],
   [
-    "/add-institution",
+    "/update-institution",
     async () => {
       document
         .getElementById("add-institution-form")
@@ -121,6 +121,20 @@ const ROUTES = [
         });
     },
     "pages/add-institution/index.html",
+  ],
+  [
+    "/update-institution",
+    async (institution) => {
+      document
+        .getElementById("add-institution-form")
+        .addEventListener("submit", (event) => {
+          updateInstitution(event);
+        });
+
+      document.getElementById("short_name").value = institution["short_name"];
+      document.getElementById("name").value = institution["name"];
+    },
+    "pages/update-institution/index.html",
   ],
 ];
 
