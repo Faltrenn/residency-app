@@ -2,7 +2,7 @@ import {
   addInstitution,
   updateInstitution,
 } from "../../pages/add-institution/script.js";
-import { addAnswer } from "../../pages/add-question/script.js";
+import { addAnswer, addQuestion } from "../../pages/add-question/script.js";
 import { addRole, updateRole } from "../../pages/add-role/script.js";
 import { addUser, updateUser } from "../../pages/add-user/script.js";
 import { institutionsStart } from "../../pages/institutions/script.js";
@@ -176,7 +176,7 @@ const ROUTES = [
       document
         .getElementById("add-question-form")
         .addEventListener("submit", (event) => {
-          addRole(event);
+          addQuestion(event);
         });
       let aabtn = document.getElementById("add-answer");
       aabtn.onclick = addAnswer;

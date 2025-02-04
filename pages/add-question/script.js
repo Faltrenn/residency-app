@@ -1,44 +1,42 @@
 import { fetchAPI } from "../../src/js/utils.js";
+import { token } from "../login/script.js";
 
 export async function addQuestion(event) {
   event.preventDefault();
 
-  const name = document.getElementById("name").value;
-  const institution = document.getElementById("institution-select").value;
-  const role = document.getElementById("role-select").value;
-  const pass = document.getElementById("pass").value;
+  const title = document.getElementById("title").value;
+  const inputs = document.querySelectorAll("#answers > input");
+
+  let answers = [];
+  inputs.forEach((input) => {
+    answers.push({ title: input.value });
+  });
 
   try {
     await fetchAPI(
       "/questions",
       "POST",
       { token: token },
-      { name: name, institution: institution, role: role, pass: pass },
+      { title: title, answers: answers },
     );
   } catch (error) {
-    alert(`Não foi possível adicionar o usuário. Tente novamente.\n${error}`);
+    alert(`Não foi possível adicionar a pergunta. Tente novamente.\n${error}`);
   }
 }
 
 export async function updateQuestion(event) {
   event.preventDefault();
 
-  const id = document.getElementById("id").value;
-  const name = document.getElementById("name").value;
-  const institution = document.getElementById("institution-select").value;
-  const role = document.getElementById("role-select").value;
-  const pass = document.getElementById("pass").value;
-
-  try {
-    await fetchAPI(
-      "/questions",
-      "PUT",
-      { token: token },
-      { id: id, name: name, institution: institution, role: role, pass: pass },
-    );
-  } catch (error) {
-    alert(`Não foi possível adicionar o usuário. Tente novamente.\n${error}`);
-  }
+  //try {
+  //  await fetchAPI(
+  //    "/questions",
+  //    "PUT",
+  //    { token: token },
+  //    { id: id, name: name, institution: institution, role: role, pass: pass },
+  //  );
+  //} catch (error) {
+  //  alert(`Não foi possível adicionar o usuário. Tente novamente.\n${error}`);
+  //}
 }
 
 export function addAnswer() {
