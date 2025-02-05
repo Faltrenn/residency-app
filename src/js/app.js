@@ -2,7 +2,7 @@ import {
   addInstitution,
   updateInstitution,
 } from "../../pages/add-institution/script.js";
-import { addAnswer, addQuestion } from "../../pages/add-question/script.js";
+import { addAnswer, addQuestion, updateQuestion } from "../../pages/add-question/script.js";
 import { addRole, updateRole } from "../../pages/add-role/script.js";
 import { addUser, updateUser } from "../../pages/add-user/script.js";
 import { institutionsStart } from "../../pages/institutions/script.js";
@@ -182,6 +182,27 @@ const ROUTES = [
       aabtn.onclick = addAnswer;
     },
     "pages/add-question/index.html",
+  ],
+  [
+    "/update-question",
+    async (question) => {
+      document
+        .getElementById("add-question-form")
+        .addEventListener("submit", (event) => {
+          updateQuestion(event);
+        });
+
+      document.getElementById("id").value = question["id"];
+      document.getElementById("title").value = question["title"];
+      let answersElement = document.getElementById("answers")
+      question["answers"].forEach(answer => {
+        let input = document.createElement("input")
+        input.setAttribute("type", "text")
+        input.value = answer["title"];
+        answersElement.appendChild(input);
+      });
+    },
+    "pages/update-question/index.html",
   ],
 ];
 
