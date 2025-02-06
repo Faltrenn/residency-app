@@ -1,6 +1,16 @@
 import { fetchAPI } from "../../src/js/utils.js";
 import { token } from "../login/script.js";
 
+export async function startAddQuestion() {
+  document
+    .getElementById("add-question-form")
+    .addEventListener("submit", (event) => {
+      addQuestion(event);
+    });
+  let aabtn = document.getElementById("add-answer");
+  aabtn.onclick = addAnswer;
+}
+
 export async function addQuestion(event) {
   event.preventDefault();
 

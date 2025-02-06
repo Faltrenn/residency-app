@@ -1,5 +1,13 @@
 import { fetchAPI } from "../../src/js/utils.js";
 
+export async function startAddInstitution() {
+  document
+    .getElementById("add-institution-form")
+    .addEventListener("submit", (event) => {
+      addInstitution(event);
+    });
+}
+
 export async function addInstitution(event) {
   event.preventDefault();
 
@@ -14,7 +22,9 @@ export async function addInstitution(event) {
       { short_name: short_name, name: name },
     );
   } catch (error) {
-    alert(`Não foi possível adicionar o instituição. Tente novamente.\n${error}`);
+    alert(
+      `Não foi possível adicionar o instituição. Tente novamente.\n${error}`,
+    );
   }
 }
 
@@ -32,6 +42,8 @@ export async function updateInstitution(event) {
       { short_name: short_name, name: name },
     );
   } catch (error) {
-    alert(`Não foi possível adicionar o instituição. Tente novamente.\n${error}`);
+    alert(
+      `Não foi possível adicionar o instituição. Tente novamente.\n${error}`,
+    );
   }
 }

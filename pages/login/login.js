@@ -4,6 +4,14 @@ import { fetchAPI } from "../../src/js/utils.js";
 export let role = localStorage.getItem("role");
 export let token = localStorage.getItem("token");
 
+export function startLogin() {
+  document.getElementById("btn-logout")?.remove();
+
+  document.getElementById("login-form").addEventListener("submit", (event) => {
+    login(event);
+  });
+}
+
 /**
  * Verifica na api se o token ainda está válido.
  *
