@@ -65,3 +65,6 @@ export const fetchRoles = async () => {
 export const fetchQuestions = async () => {
   return await fetchAPI("/questions", "get", { token: token });
 };
+export const fetchQuestionnaires = async () => {
+  return await fetchAPI("/questionnaires", "get", { token: token });
+};

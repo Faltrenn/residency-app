@@ -6,8 +6,6 @@ export async function questionsStart() {
 
   let questions = await fetchQuestions();
   questions.forEach((question) => {
-    let q = document.createElement("h2");
-
     let btn = document.createElement("button");
     btn.onclick = () => {
       deleteQuestion(question["id"]);
@@ -22,6 +20,7 @@ export async function questionsStart() {
     btn2.textContent = "UPD";
     ql.appendChild(btn2);
 
+    let q = document.createElement("h2");
     q.textContent = question["title"];
     ql.appendChild(q);
     let l = document.createElement("ul")
