@@ -8,7 +8,7 @@ export async function questionnairesStart() {
   questionnaires.forEach((questionnaire) => {
     let btn = document.createElement("button");
     btn.onclick = () => {
-      deleteQuestion(questionnaire["id"]);
+      deleteQuestionnaire(questionnaire["id"]);
     };
     btn.textContent = "DEL";
     ql.appendChild(btn);
