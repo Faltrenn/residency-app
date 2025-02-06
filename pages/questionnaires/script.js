@@ -15,7 +15,7 @@ export async function questionnairesStart() {
 
     let btn2 = document.createElement("button");
     btn2.onclick = () => {
-      navigate("/update-questionnaire", "app", question);
+      navigate("/update-questionnaire", "app", questionnaire);
     };
     btn2.textContent = "UPD";
     ql.appendChild(btn2);

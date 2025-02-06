@@ -7,7 +7,10 @@ import {
   addQuestion,
   updateQuestion,
 } from "../../pages/add-question/script.js";
-import { addQuestionnaire } from "../../pages/add-questionnaire/script.js";
+import {
+  addQuestionnaire,
+  updateQuestionnaire,
+} from "../../pages/add-questionnaire/script.js";
 import { addRole, updateRole } from "../../pages/add-role/script.js";
 import { addUser, updateUser } from "../../pages/add-user/script.js";
 import { institutionsStart } from "../../pages/institutions/script.js";
@@ -267,6 +270,67 @@ const ROUTES = [
       });
     },
     "pages/add-questionnaire/index.html",
+  ],
+  [
+    "/update-questionnaire",
+    async (questionnaire) => {
+      document
+        .getElementById("update-questionnaire-form")
+        .addEventListener("submit", (event) => {
+          updateQuestionnaire(event);
+        });
+
+      document.getElementById("id").value = questionnaire["id"]
+
+      const users = await fetchAPI("/users", "GET", { token: token }, null);
+
+      const professorSelect = document.getElementById("professor-select");
+      users.forEach((user) => {
+        if (user["role"] == "Professor") {
+          const o = document.createElement("option");
+          o.innerText = user["name"];
+          o.value = user["id"];
+          professorSelect.appendChild(o);
+        }
+      });
+      professorSelect.value = questionnaire["professor"]["id"];
+
+      const residentSelect = document.getElementById("resident-select");
+      users.forEach((user) => {
+        if (user["role"] == "Residente") {
+          const o = document.createElement("option");
+          o.innerText = user["name"];
+          o.value = user["id"];
+          residentSelect.appendChild(o);
+        }
+      });
+      residentSelect.value = questionnaire["resident"]["id"];
+
+      const questions = document.getElementById("questions");
+      const qts = await fetchQuestions();
+      questionnaire["questions_answereds"].forEach((qt) => {
+        let label = document.createElement("label");
+        label.setAttribute("for", qt["id"]);
+        label.textContent = qt["title"] + ": ";
+        let select = document.createElement("select");
+        select.setAttribute("name", qt["id"]);
+        qts.forEach((q) => {
+          if (qt["id"] == q["id"]) {
+            q["answers"].forEach((a) => {
+              let option = document.createElement("option");
+              option.setAttribute("value", a["id"]);
+              option.textContent = a["title"];
+              select.appendChild(option);
+            });
+          }
+        });
+        select.value = qt["answer"]["id"];
+        questions.appendChild(label);
+        questions.appendChild(select);
+        questions.appendChild(document.createElement("br"));
+      });
+    },
+    "pages/update-questionnaire/index.html",
   ],
 ];
 
