@@ -1,3 +1,5 @@
+import { fetchAPI } from "../../src/js/utils.js";
+
 export async function startUpdateUser(user) {
   document
     .getElementById("add-user-form")
@@ -5,7 +7,7 @@ export async function startUpdateUser(user) {
       updateUser(event);
     });
 
-  const roles = await fetchAPI("/roles", "GET", { token: token }, null);
+  const roles = await fetchAPI("/roles", "GET", {}, null);
 
   const rolesSelect = document.getElementById("role-select");
   roles.forEach((role) => {
@@ -18,8 +20,7 @@ export async function startUpdateUser(user) {
   const institutions = await fetchAPI(
     "/institutions",
     "GET",
-    { token: token },
-    null,
+    {},
   );
 
   const institutionSelect = document.getElementById("institution-select");
@@ -35,4 +36,25 @@ export async function startUpdateUser(user) {
   document.getElementById("institution-select").value = user["institution"];
   document.getElementById("role-select").value = user["role"];
   document.getElementById("pass").value = user["pass"];
+}
+
+export async function updateUser(event) {
+  event.preventDefault();
+
+  const id = document.getElementById("id").value;
+  const name = document.getElementById("name").value;
+  const institution = document.getElementById("institution-select").value;
+  const role = document.getElementById("role-select").value;
+  const pass = document.getElementById("pass").value;
+
+  try {
+    await fetchAPI(
+      "/users",
+      "PUT",
+      {},
+      { id: id, name: name, institution: institution, role: role, pass: pass },
+    );
+  } catch (error) {
+    alert(`Não foi possível adicionar o usuário. Tente novamente.\n${error}`);
+  }
 }

@@ -54,23 +54,3 @@ export async function addUser(event) {
   }
 }
 
-export async function updateUser(event) {
-  event.preventDefault();
-
-  const id = document.getElementById("id").value;
-  const name = document.getElementById("name").value;
-  const institution = document.getElementById("institution-select").value;
-  const role = document.getElementById("role-select").value;
-  const pass = document.getElementById("pass").value;
-
-  try {
-    await fetchAPI(
-      "/users",
-      "PUT",
-      { token: token },
-      { id: id, name: name, institution: institution, role: role, pass: pass },
-    );
-  } catch (error) {
-    alert(`Não foi possível adicionar o usuário. Tente novamente.\n${error}`);
-  }
-}

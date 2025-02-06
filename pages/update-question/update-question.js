@@ -1,3 +1,5 @@
+import { fetchAPI } from "../../src/js/utils.js";
+
 export async function startUpdateQuestion(question) {
   document
     .getElementById("add-question-form")
@@ -14,4 +16,28 @@ export async function startUpdateQuestion(question) {
     input.value = answer["title"];
     answersElement.appendChild(input);
   });
+}
+
+export async function updateQuestion(event) {
+  event.preventDefault();
+
+  const id = document.getElementById("id").value;
+  const title = document.getElementById("title").value;
+  const inputs = document.querySelectorAll("#answers > input");
+
+  let answers = [];
+  inputs.forEach((input) => {
+    answers.push({ title: input.value });
+  });
+
+  try {
+    await fetchAPI(
+      "/questions",
+      "PUT",
+      {},
+      { id: id, title: title, answers: answers },
+    );
+  } catch (error) {
+    alert(`Não foi possível atualizar a pergunta. Tente novamente.\n${error}`);
+  }
 }

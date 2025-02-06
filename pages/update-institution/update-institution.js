@@ -1,3 +1,5 @@
+import { updateInstitution } from "../add-institution/add-institution.js";
+
 export async function startUpdateInstitution(institution) {
   document
     .getElementById("add-institution-form")

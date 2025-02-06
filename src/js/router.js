@@ -1,5 +1,5 @@
 import { ROLES_PATH } from "./app.js";
-import { addLogoutButtonIfNotExists, refreshRoleAndToken, role, token } from "../../pages/login/script.js";
+import { addLogoutButtonIfNotExists, refreshRoleAndToken, role, token } from "../../pages/login/login.js";
 
 const routes = {}; // Rotas {path: [callback, filePath]}
 

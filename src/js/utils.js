@@ -1,4 +1,4 @@
-import { token } from "../../pages/login/script.js";
+import { token } from "../../pages/login/login.js";
 
 /**
  * Define o que vai ser executado quando um <a> for clicaco
