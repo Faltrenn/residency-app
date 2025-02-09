@@ -3,6 +3,7 @@ import { fetchAPI, fetchQuestions } from "../../src/js/utils.js";
 
 export async function questionsStart() {
   const ql = document.getElementById("questions-list");
+  ql.innerHTML = ""
 
   let questions = await fetchQuestions();
   questions.forEach((question) => {
