@@ -1,4 +1,5 @@
-import { fetchAPI } from "../../src/js/utils.js";
+import { fetchAPI, fetchQuestions } from "../../src/js/utils.js";
+import { token } from "../login/login.js";
 
 export async function startUpdateQuestionnaire(questionnaire) {
   document
@@ -9,7 +10,7 @@ export async function startUpdateQuestionnaire(questionnaire) {
 
   document.getElementById("id").value = questionnaire["id"];
 
-  const users = await fetchAPI("/users", "GET", { token: token }, null);
+  const users = await fetchAPI("/users", "GET", {}, null);
 
   const professorSelect = document.getElementById("professor-select");
   users.forEach((user) => {

@@ -1,4 +1,4 @@
-import { fetchAPI } from "../../src/js/utils.js";
+import { fetchAPI, fetchQuestions } from "../../src/js/utils.js";
 import { token } from "../login/login.js";
 
 export async function startAddQuestionnaire() {

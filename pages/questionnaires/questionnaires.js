@@ -3,6 +3,7 @@ import { fetchAPI, fetchQuestionnaires } from "../../src/js/utils.js";
 
 export async function questionnairesStart() {
   const ql = document.getElementById("questionnaires-list");
+  ql.innerHTML = "";
 
   let questionnaires = await fetchQuestionnaires();
   questionnaires.forEach((questionnaire) => {
@@ -27,11 +28,11 @@ export async function questionnairesStart() {
 
     ql.appendChild(q1);
     ql.appendChild(q2);
-    let l = document.createElement("ul")
+    let l = document.createElement("ul");
     questionnaire["questions_answereds"].forEach((answer) => {
       let q3 = document.createElement("h2");
       q3.textContent = answer["title"];
-      l.appendChild(q3)
+      l.appendChild(q3);
 
       let a = document.createElement("li");
       a.textContent = answer["answer"]["title"];
@@ -45,4 +46,3 @@ export async function deleteQuestionnaire(id) {
   await fetchAPI("/questionnaires", "DELETE", {}, { id: id });
   await questionnairesStart();
 }
-

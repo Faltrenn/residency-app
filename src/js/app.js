@@ -10,6 +10,7 @@ import { questionsStart } from "../../pages/questions/questions.js";
 import { rolesStart } from "../../pages/roles/roles.js";
 import { startUpdateInstitution } from "../../pages/update-institution/update-institution.js";
 import { startUpdateQuestion } from "../../pages/update-question/update-question.js";
+import { startUpdateQuestionnaire } from "../../pages/update-questionnaire/update-questionnaire.js";
 import { startUpdateRole } from "../../pages/update-role/update-role.js";
 import { startUpdateUser } from "../../pages/update-user/update-user.js";
 import { start } from "../../pages/users/users.js";
@@ -65,7 +66,7 @@ const ROUTES = [
   ],
   [
     "/update-questionnaire",
-    startUpdateQuestion,
+    startUpdateQuestionnaire,
     "pages/update-questionnaire/update-questionnaire.html",
   ],
 ];
