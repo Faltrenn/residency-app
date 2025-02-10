@@ -31,6 +31,7 @@ const ROUTES = [
   ["/login", startLogin, "pages/login/login.html"],
   ["/users", start, "pages/users/users.html"],
   [ROLES_PATH.ADMIN, null, "pages/admin/admin.html"],
+  [ROLES_PATH.PROFESSOR, null, "pages/professor/professor.html"],
   ["/add-user", startAddUser, "pages/add-user/add-user.html"],
   ["/update-user", startUpdateUser, "pages/update-user/update-user.html"],
   ["/institutions", institutionsStart, "pages/institutions/institutions.html"],

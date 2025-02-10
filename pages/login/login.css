@@ -1,0 +1,7 @@
+.login-page {
+  align-items: center;
+}
+
+#login-form {
+  flex-direction: column;
+}

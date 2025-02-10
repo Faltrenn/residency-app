@@ -20,7 +20,7 @@ export function startLogin() {
  */
 async function verifyToken() {
   if (token) {
-    const response = await fetch("http://localhost:8000/login/check", {
+    const response = await fetch("http://192.168.0.113:8000/login/check", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
