@@ -1,0 +1,7 @@
+const KEY = "userId"; // Chave usada no armazenamento
+
+export const stateManager = {
+    saveUserId: (id) => localStorage.setItem(KEY, id),
+    getUserId: () => localStorage.getItem(KEY),
+    clearUserId: () => localStorage.removeItem(KEY),
+};

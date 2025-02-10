@@ -1,3 +1,4 @@
+import { stateManager } from "../../src/js/stateManager.js";
 import { fetchAPI } from "../../src/js/utils.js";
 
 export async function startUpdateRole(role) {
@@ -6,6 +7,10 @@ export async function startUpdateRole(role) {
     .addEventListener("submit", (event) => {
       updateRole(event);
     });
+
+  if(role) {
+    stateManager.role
+  }
 
   document.getElementById("last_title").value = role["title"];
   document.getElementById("title").value = role["title"];

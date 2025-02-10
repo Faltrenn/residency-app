@@ -1,9 +1,8 @@
-import { stateManager } from "../../src/js/stateManager.js";
+import { KEYS, stateManager } from "../../src/js/stateManager.js";
 import {
   fetchAPI,
   fetchInstitutions,
   fetchRoles,
-  fetchUsers,
 } from "../../src/js/utils.js";
 
 export async function startUpdateUser(user) {
@@ -33,13 +32,9 @@ export async function startUpdateUser(user) {
     institutionSelect.appendChild(o);
   });
 
-  if (user) stateManager.userId.set(user.id);
-  else {
-    const users = await fetchUsers();
-    users.forEach((u) => {
-      if (u.id == stateManager.userId.get()) user = u;
-    });
-  }
+
+  user = await stateManager.refreshState(KEYS.USER, user)
+  console.log(user)
 
   document.getElementById("id").value = user.id;
   document.getElementById("name").value = user.name;

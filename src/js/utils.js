@@ -32,7 +32,7 @@ export async function fetchAPI(path, method, headers, body) {
     method: method.toUpperCase(),
     headers: {
       "Content-Type": "application/json",
-      "token": token,
+      token: token,
       ...headers,
     },
     ...(body ? { body: JSON.stringify(body) } : {}),
@@ -67,4 +67,13 @@ export const fetchQuestions = async () => {
 };
 export const fetchQuestionnaires = async () => {
   return await fetchAPI("/questionnaires", "get", { token: token });
+};
+
+export const fetchUser = async (id) => {
+  const users = await fetchUsers();
+  let user = null;
+  users.forEach((u) => {
+    if (u.id == id) user = u;
+  });
+  return user;
 };
