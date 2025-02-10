@@ -1,4 +1,4 @@
-import { stateManager } from "../../src/js/stateManager.js";
+import { KEYS, stateManager } from "../../src/js/stateManager.js";
 import { fetchAPI } from "../../src/js/utils.js";
 
 export async function startUpdateRole(role) {
@@ -8,12 +8,10 @@ export async function startUpdateRole(role) {
       updateRole(event);
     });
 
-  if(role) {
-    stateManager.role
-  }
+  role = await stateManager.refreshState(KEYS.UPDATE_ROLE, role);
 
-  document.getElementById("last_title").value = role["title"];
-  document.getElementById("title").value = role["title"];
+  document.getElementById("last_title").value = role.title;
+  document.getElementById("title").value = role.title;
 }
 
 export async function updateRole(event) {

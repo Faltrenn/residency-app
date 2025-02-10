@@ -72,8 +72,44 @@ export const fetchQuestionnaires = async () => {
 export const fetchUser = async (id) => {
   const users = await fetchUsers();
   let user = null;
-  users.forEach((u) => {
-    if (u.id == id) user = u;
+  users.forEach((item) => {
+    if (item.id == id) user = item;
   });
   return user;
+};
+
+export const fetchRole = async (id) => {
+  const roles = await fetchRoles();
+  let role = null;
+  roles.forEach((item) => {
+    if (item.title == id) role = item;
+  });
+  return role;
+};
+
+export const fetchInstitution = async (id) => {
+  const institutions = await fetchInstitutions();
+  let institution = null;
+  institutions.forEach((item) => {
+    if (item.short_name == id) institution = item;
+  });
+  return institution;
+};
+
+export const fetchQuestion = async (id) => {
+  const questions = await fetchQuestions();
+  let question = null;
+  questions.forEach((item) => {
+    if (item.id == id) question = item;
+  });
+  return question;
+};
+
+export const fetchQuestionnaire = async (id) => {
+  const questionnaires = await fetchQuestionnaires();
+  let questionnaire = null;
+  questionnaires.forEach((item) => {
+    if (item.id == id) questionnaire = item;
+  });
+  return questionnaire;
 };

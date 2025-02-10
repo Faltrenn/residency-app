@@ -33,8 +33,7 @@ export async function startUpdateUser(user) {
   });
 
 
-  user = await stateManager.refreshState(KEYS.USER, user)
-  console.log(user)
+  user = await stateManager.refreshState(KEYS.UPDATE_USER, user)
 
   document.getElementById("id").value = user.id;
   document.getElementById("name").value = user.name;

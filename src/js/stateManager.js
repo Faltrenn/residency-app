@@ -1,4 +1,4 @@
-import { fetchUser } from "./utils.js";
+import { fetchRole, fetchUser } from "./utils.js";
 
 class KeyObject {
   constructor(stateKey, objKey) {
@@ -8,21 +8,23 @@ class KeyObject {
 }
 
 export const KEYS = Object.freeze({
-  USER: new KeyObject("userId", "id"),
-  ROLE: new KeyObject("role", "title"),
+  UPDATE_USER: new KeyObject("updateUser", "id"),
+  UPDATE_ROLE: new KeyObject("updateRole", "title"),
 });
 
 export const stateManager = {
-  refreshState: refresh,
-  userId: {
-    set: (id) => localStorage.setItem(KEYS.USER.stateKey, id),
-    get: async () => await fetchUser(localStorage.getItem(KEYS.USER.stateKey)),
-    clear: () => localStorage.removeItem(KEYS.USER.stateKey),
+  refreshState: (keyInfo, obj) => refreshState(keyInfo, obj),
+  updateUser: {
+    set: (id) => localStorage.setItem(KEYS.UPDATE_USER.stateKey, id),
+    get: async () =>
+      await fetchUser(localStorage.getItem(KEYS.UPDATE_USER.stateKey)),
+    clear: () => localStorage.removeItem(KEYS.UPDATE_USER.stateKey),
   },
-  role: {
-    set: (role) => localStorage.setItem(KEYS.ROLE.stateKey, role),
-    get: () => localStorage.getItem(KEYS.ROLE.stateKey),
-    clear: () => localStorage.removeItem(KEYS.ROLE.stateKey),
+  updateRole: {
+    set: (role) => localStorage.setItem(KEYS.UPDATE_ROLE.stateKey, role),
+    get: async () =>
+      await fetchRole(localStorage.getItem(KEYS.UPDATE_ROLE.stateKey)),
+    clear: () => localStorage.removeItem(KEYS.UPDATE_ROLE.stateKey),
   },
 };
 
@@ -33,7 +35,7 @@ export const stateManager = {
  * @param {Object} obj - Object that contains or not new values.
  * @returns {Object} Return saved object or the object passad if not null.
  */
-function refresh(keyInfo, obj) {
+function refreshState(keyInfo, obj) {
   if (obj) stateManager[keyInfo.stateKey].set(obj[keyInfo.objKey]);
   return stateManager[keyInfo.stateKey].get();
 }
