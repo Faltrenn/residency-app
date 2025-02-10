@@ -1,3 +1,4 @@
+import { KEYS, stateManager } from "../../src/js/stateManager.js";
 import { updateInstitution } from "../add-institution/add-institution.js";
 
 export async function startUpdateInstitution(institution) {
@@ -7,6 +8,8 @@ export async function startUpdateInstitution(institution) {
       updateInstitution(event);
     });
 
-  document.getElementById("short_name").value = institution["short_name"];
-  document.getElementById("name").value = institution["name"];
+  institution = await stateManager.refreshState(KEYS.UPDATE_INSTITUTION, institution)
+
+  document.getElementById("short_name").value = institution.short_name;
+  document.getElementById("name").value = institution.name;
 }
