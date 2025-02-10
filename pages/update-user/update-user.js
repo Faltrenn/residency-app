@@ -1,4 +1,10 @@
-import { fetchAPI, fetchInstitutions, fetchRoles } from "../../src/js/utils.js";
+import { stateManager } from "../../src/js/stateManager.js";
+import {
+  fetchAPI,
+  fetchInstitutions,
+  fetchRoles,
+  fetchUsers,
+} from "../../src/js/utils.js";
 
 export async function startUpdateUser(user) {
   document
@@ -27,11 +33,19 @@ export async function startUpdateUser(user) {
     institutionSelect.appendChild(o);
   });
 
-  document.getElementById("id").value = user["id"];
-  document.getElementById("name").value = user["name"];
-  document.getElementById("institution-select").value = user["institution"];
-  document.getElementById("role-select").value = user["role"];
-  document.getElementById("pass").value = user["pass"];
+  if (user) stateManager.userId.set(user.id);
+  else {
+    const users = await fetchUsers();
+    users.forEach((u) => {
+      if (u.id == stateManager.userId.get()) user = u;
+    });
+  }
+
+  document.getElementById("id").value = user.id;
+  document.getElementById("name").value = user.name;
+  document.getElementById("institution-select").value = user.institution;
+  document.getElementById("role-select").value = user.role;
+  document.getElementById("pass").value = user.pass;
 }
 
 export async function updateUser(event) {

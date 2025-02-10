@@ -19,20 +19,3 @@ export async function addRole(event) {
   }
 }
 
-export async function updateRole(event) {
-  event.preventDefault();
-
-  const title = document.getElementById("title").value;
-  const last_title = document.getElementById("last_title").value;
-
-  try {
-    await fetchAPI(
-      "/roles",
-      "PUT",
-      {},
-      { title: title, last_title: last_title },
-    );
-  } catch (error) {
-    alert(`Não foi possível adicionar o cargo. Tente novamente.\n${error}`);
-  }
-}
