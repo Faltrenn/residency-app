@@ -1,3 +1,4 @@
+import { KEYS, stateManager } from "../../src/js/stateManager.js";
 import { fetchAPI } from "../../src/js/utils.js";
 
 export async function startUpdateQuestion(question) {
@@ -7,13 +8,16 @@ export async function startUpdateQuestion(question) {
       updateQuestion(event);
     });
 
-  document.getElementById("id").value = question["id"];
-  document.getElementById("title").value = question["title"];
+  question = await stateManager.refreshState(KEYS.UPDATE_QUESTION, question);
+
+  document.getElementById("id").value = question.id;
+  document.getElementById("title").value = question.title;
+
   let answersElement = document.getElementById("answers");
-  question["answers"].forEach((answer) => {
+  question.answers.forEach((answer) => {
     let input = document.createElement("input");
     input.setAttribute("type", "text");
-    input.value = answer["title"];
+    input.value = answer.title;
     answersElement.appendChild(input);
   });
 }
