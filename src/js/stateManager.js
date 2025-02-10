@@ -18,7 +18,7 @@ export const KEYS = Object.freeze({
   UPDATE_ROLE: new KeyObject("updateRole", "title"),
   UPDATE_INSTITUTION: new KeyObject("updateInstitution", "short_name"),
   UPDATE_QUESTION: new KeyObject("updateQuestion", "id"),
-  UPDATE_QUSTIONNAIRE: new KeyObject("updateQuestionnaire", "id"),
+  UPDATE_QUESTIONNAIRE: new KeyObject("updateQuestionnaire", "id"),
 });
 
 export const stateManager = {
@@ -49,10 +49,10 @@ export const stateManager = {
   },
   updateQuestionnaire: {
     set: (questionnaire) =>
-      setState(KEYS.UPDATE_QUSTIONNAIRE.stateKey, questionnaire),
+      setState(KEYS.UPDATE_QUESTIONNAIRE.stateKey, questionnaire),
     get: async () =>
-      await fetchQuestionnaire(getState(KEYS.UPDATE_QUSTIONNAIRE.stateKey)),
-    clear: () => clearState(KEYS.UPDATE_QUSTIONNAIRE.stateKey),
+      await fetchQuestionnaire(getState(KEYS.UPDATE_QUESTIONNAIRE.stateKey)),
+    clear: () => clearState(KEYS.UPDATE_QUESTIONNAIRE.stateKey),
   },
 };
 
