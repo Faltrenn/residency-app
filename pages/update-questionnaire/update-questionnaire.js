@@ -1,4 +1,4 @@
-import { fetchAPI, fetchQuestions } from "../../src/js/utils.js";
+import { fetchAPI, fetchQuestions, fetchUsers } from "../../src/js/utils.js";
 import { token } from "../login/login.js";
 
 export async function startUpdateQuestionnaire(questionnaire) {
@@ -10,7 +10,7 @@ export async function startUpdateQuestionnaire(questionnaire) {
 
   document.getElementById("id").value = questionnaire["id"];
 
-  const users = await fetchAPI("/users", "GET", {}, null);
+  const users = await fetchUsers();
 
   const professorSelect = document.getElementById("professor-select");
   users.forEach((user) => {
@@ -21,6 +21,7 @@ export async function startUpdateQuestionnaire(questionnaire) {
       professorSelect.appendChild(o);
     }
   });
+
   professorSelect.value = questionnaire["professor"]["id"];
 
   const residentSelect = document.getElementById("resident-select");
@@ -32,6 +33,7 @@ export async function startUpdateQuestionnaire(questionnaire) {
       residentSelect.appendChild(o);
     }
   });
+
   residentSelect.value = questionnaire["resident"]["id"];
 
   const questions = document.getElementById("questions");

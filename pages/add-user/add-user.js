@@ -1,4 +1,4 @@
-import { fetchAPI } from "../../src/js/utils.js";
+import { fetchAPI, fetchInstitutions, fetchRoles } from "../../src/js/utils.js";
 import { token } from "../login/login.js";
 
 export async function startAddUser() {
@@ -8,7 +8,7 @@ export async function startAddUser() {
       addUser(event);
     });
 
-  const roles = await fetchAPI("/roles", "GET", { token: token }, null);
+  const roles = await fetchRoles();
 
   const rolesSelect = document.getElementById("role-select");
   roles.forEach((role) => {
@@ -18,12 +18,7 @@ export async function startAddUser() {
     rolesSelect.appendChild(o);
   });
 
-  const institutions = await fetchAPI(
-    "/institutions",
-    "GET",
-    { token: token },
-    null,
-  );
+  const institutions = await fetchInstitutions();
 
   const institutionSelect = document.getElementById("institution-select");
   institutions.forEach((institution) => {
@@ -53,4 +48,3 @@ export async function addUser(event) {
     alert(`Não foi possível adicionar o usuário. Tente novamente.\n${error}`);
   }
 }
-

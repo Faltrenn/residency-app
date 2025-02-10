@@ -1,4 +1,4 @@
-import { fetchAPI } from "../../src/js/utils.js";
+import { fetchAPI, fetchInstitutions, fetchRoles } from "../../src/js/utils.js";
 
 export async function startUpdateUser(user) {
   document
@@ -7,7 +7,7 @@ export async function startUpdateUser(user) {
       updateUser(event);
     });
 
-  const roles = await fetchAPI("/roles", "GET", {}, null);
+  const roles = await fetchRoles();
 
   const rolesSelect = document.getElementById("role-select");
   roles.forEach((role) => {
@@ -17,11 +17,7 @@ export async function startUpdateUser(user) {
     rolesSelect.appendChild(o);
   });
 
-  const institutions = await fetchAPI(
-    "/institutions",
-    "GET",
-    {},
-  );
+  const institutions = await fetchInstitutions();
 
   const institutionSelect = document.getElementById("institution-select");
   institutions.forEach((institution) => {
