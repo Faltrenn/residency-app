@@ -28,14 +28,14 @@ export function setLinksLogic(elementID, logic) {
  * @returns {Promise<object>}
  */
 export async function fetchAPI(path, method, headers, body) {
-  const response = await fetch(`http://192.168.0.113:8000${path}`, {
+  const response = await fetch(`http://192.168.0.107:8000${path}`, {
     method: method.toUpperCase(),
     headers: {
       "Content-Type": "application/json",
       token: token,
       ...headers,
     },
-    ...(body ? { body: JSON.stringify(body) } : {}),
+    ...((body && method.toUpperCase() != "GET") ? { body: JSON.stringify(body) } : {}),
   });
 
   if (!response.ok) {

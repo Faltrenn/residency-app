@@ -20,21 +20,14 @@ export function startLogin() {
  */
 async function verifyToken() {
   if (token) {
-    const response = await fetch("http://192.168.0.113:8000/login/check", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        token: token,
-      },
-    });
-    if (!response.ok) {
-      alert("Token expirado!");
+    try {
+      const data = await fetchAPI("/login/check", "GET", {}, {});
+      localStorage.setItem("role", data["role"]);
+    } catch(e){
+      alert("Token expirado!", e);
       logout();
       return;
     }
-    const data = await response.json();
-
-    localStorage.setItem("role", data["role"]);
   }
 }
 

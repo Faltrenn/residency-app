@@ -1,5 +1,6 @@
 .login-page {
   align-items: center;
+  justify-content: center;
 }
 
 #login-form {
