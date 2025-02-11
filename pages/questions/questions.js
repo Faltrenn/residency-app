@@ -3,39 +3,46 @@ import { fetchAPI, fetchQuestions } from "../../src/js/utils.js";
 
 export async function questionsStart() {
   const ql = document.getElementById("questions-list");
-  ql.innerHTML = ""
+  ql.innerHTML = "";
 
   let questions = await fetchQuestions();
   questions.forEach((question) => {
-    let btn = document.createElement("button");
-    btn.onclick = () => {
-      deleteQuestion(question["id"]);
-    };
-    btn.textContent = "DEL";
-    ql.appendChild(btn);
+    let questionCard = document.createElement("div");
+    questionCard.classList.add("question-card");
 
-    let btn2 = document.createElement("button");
-    btn2.onclick = () => {
-      navigate("/update-question", "app", question);
-    };
-    btn2.textContent = "UPD";
-    ql.appendChild(btn2);
+    let title = document.createElement("h2");
+    title.textContent = question["title"];
+    questionCard.appendChild(title);
 
-    let q = document.createElement("h2");
-    q.textContent = question["title"];
-    ql.appendChild(q);
-    let l = document.createElement("ul")
+    let answerList = document.createElement("ul");
+    answerList.classList.add("answer-list");
     question["answers"].forEach((answer) => {
-      let a = document.createElement("li");
-      a.textContent = answer["title"];
-      l.appendChild(a);
+      let answerItem = document.createElement("li");
+      answerItem.textContent = answer["title"];
+      answerList.appendChild(answerItem);
     });
-    ql.appendChild(l);
+    questionCard.appendChild(answerList);
+
+    let buttonContainer = document.createElement("div");
+    buttonContainer.classList.add("button-container");
+
+    let btnDel = document.createElement("button");
+    btnDel.classList.add("button", "button-delete");
+    btnDel.onclick = () => deleteQuestion(question["id"]);
+    btnDel.textContent = "DEL";
+    buttonContainer.appendChild(btnDel);
+
+    let btnUpd = document.createElement("button");
+    btnUpd.classList.add("button", "button-update");
+    btnUpd.onclick = () => navigate("/update-question", "app", question);
+    btnUpd.textContent = "UPD";
+    buttonContainer.appendChild(btnUpd);
+
+    questionCard.appendChild(buttonContainer);
+    ql.appendChild(questionCard);
   });
 }
-
 export async function deleteQuestion(id) {
   await fetchAPI("/questions", "DELETE", {}, { id: id });
   await questionsStart();
 }
-
