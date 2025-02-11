@@ -139,3 +139,24 @@ body,
 /*  /*cursor: pointer;*/
 /*}*/
 
+.button-container {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.button-delete {
+  background-color: #e74c3c;
+}
+
+/*.button-delete:hover {*/
+/*  background-color: #c0392b;*/
+/*}*/
+
+.button-update {
+  background-color: #3498db;
+}
+
+/*.button-update:hover {*/
+/*  background-color: #2980b9;*/
+/*}*/
