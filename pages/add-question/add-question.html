@@ -1,21 +1,37 @@
-<div>
-  <h1>Criar Pergunta</h1>
-  <form id="add-question-form">
-    <div>
-      <label for="title">Pergunta</label>
-      <input type="text" id="title" name="title" required />
-    </div>
+<!doctype html>
+<html>
+  <link href="pages/add-question/add-question.css" rel="stylesheet" />
 
-    <div id="answers">
-      <input type="text" required />
-    </div>
+  <header class="header">
+    <h1>Criar Pergunta</h1>
+  </header>
 
-    <div>
-      <div>
-        <button id="add-answer">Criar Alternativa</button>
-      </div>
-      <div>
-        <button type="submit">Criar Pergunta</button>
-      </div>
-  </form>
-</div>
+  <div class="page add-question-page">
+    <div class="container add-question-container">
+      <form id="add-question-form">
+        <div class="form-group">
+          <label for="title">Pergunta</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            class="input-field"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label>Alternativas</label>
+          <div id="answers">
+            <input type="text" class="input-field" required />
+          </div>
+        </div>
+        <div class="button-container">
+          <button type="button" id="add-answer" class="button button-add">
+            Criar Alternativa
+          </button>
+          <button type="submit" class="button">Criar Pergunta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</html>
