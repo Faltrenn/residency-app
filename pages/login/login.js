@@ -65,7 +65,6 @@ export async function login(event) {
       { user: username, pass: password },
     );
 
-    alert(`Token recebido: ${data.token}`);
     localStorage.setItem("token", data.token);
     localStorage.setItem("role", data.role);
     role = data.role;

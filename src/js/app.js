@@ -23,7 +23,7 @@ export const ROLES_PATH = {
   RESIDENT: "/Resident",
 };
 
-export const pageTitle = document.getElementById("page-title")
+export const pageTitle = document.getElementById("page-title");
 
 // [[path, callback, filePath]...]
 // path é o caminho da rota
@@ -31,51 +31,87 @@ export const pageTitle = document.getElementById("page-title")
 // filepath é o caminho do html a ser carregado
 const ROUTES = [
   ["/login", startLogin, "pages/login/login.html", null],
-  ["/users", start, "pages/users/users.html"],
-  [ROLES_PATH.ADMIN, null, "pages/admin/admin.html"],
+  ["/users", start, "pages/users/users.html", "Usuários"],
+  [ROLES_PATH.ADMIN, null, "pages/admin/admin.html", "Página do Administrador"],
   [
     ROLES_PATH.PROFESSOR,
     null,
     "pages/professor/professor.html",
     "Página do Professor",
   ],
-  ["/add-user", startAddUser, "pages/add-user/add-user.html"],
-  ["/update-user", startUpdateUser, "pages/update-user/update-user.html"],
-  ["/institutions", institutionsStart, "pages/institutions/institutions.html"],
+  [
+    "/add-user",
+    startAddUser,
+    "pages/add-user/add-user.html",
+    "Criar Usuário",
+  ],
+  [
+    "/update-user",
+    startUpdateUser,
+    "pages/update-user/update-user.html",
+    "Atualizar Usuário",
+  ],
+  [
+    "/institutions",
+    institutionsStart,
+    "pages/institutions/institutions.html",
+    "Instituições",
+  ],
   [
     "/add-institution",
     startAddInstitution,
     "pages/add-institution/add-institution.html",
+    "Criar Instituição",
   ],
   [
     "/update-institution",
     startUpdateInstitution,
     "pages/update-institution/update-institution.html",
+    "Atualizar Instituição",
   ],
-  ["/roles", rolesStart, "pages/roles/roles.html"],
-  ["/add-role", startAddRole, "pages/add-role/add-role.html"],
-  ["/update-role", startUpdateRole, "pages/update-role/update-role.html"],
-  ["/questions", questionsStart, "pages/questions/questions.html"],
-  ["/add-question", startAddQuestion, "pages/add-question/add-question.html"],
+  ["/roles", rolesStart, "pages/roles/roles.html", "Cargos"],
+  [
+    "/add-role",
+    startAddRole,
+    "pages/add-role/add-role.html",
+    "Criar Cargo",
+  ],
+  [
+    "/update-role",
+    startUpdateRole,
+    "pages/update-role/update-role.html",
+    "Atualizar Cargo",
+  ],
+  ["/questions", questionsStart, "pages/questions/questions.html", "Perguntas"],
+  [
+    "/add-question",
+    startAddQuestion,
+    "pages/add-question/add-question.html",
+    "Criar Pergunta",
+  ],
   [
     "/update-question",
     startUpdateQuestion,
     "pages/update-question/update-question.html",
+    "Atualizar Pergunta",
   ],
   [
     "/questionnaires",
     questionnairesStart,
     "pages/questionnaires/questionnaires.html",
+    "Avaliações",
   ],
   [
     "/add-questionnaire",
     startAddQuestionnaire,
     "pages/add-questionnaire/add-questionnaire.html",
+    "Criar Avaliação",
   ],
   [
     "/update-questionnaire",
     startUpdateQuestionnaire,
     "pages/update-questionnaire/update-questionnaire.html",
+    "Atualizar Avaliação",
   ],
 ];
 
