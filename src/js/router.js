@@ -1,5 +1,10 @@
-import { ROLES_PATH } from "./app.js";
-import { addLogoutButtonIfNotExists, refreshRoleAndToken, role, token } from "../../pages/login/login.js";
+import { ROLES_PATH, pageTitle } from "./app.js";
+import {
+  addLogoutButtonIfNotExists,
+  refreshRoleAndToken,
+  role,
+  token,
+} from "../../pages/login/login.js";
 
 const routes = {}; // Rotas {path: [callback, filePath]}
 
@@ -9,8 +14,8 @@ const routes = {}; // Rotas {path: [callback, filePath]}
  * @param {function} callback - Função à ser executada quando redirecionar.
  * @param {string} filePath - Caminho do arquivo a ser carregado.
  **/
-export function registerRoute(path, callback, filePath) {
-  routes[path] = [callback, filePath];
+export function registerRoute(path, callback, filePath, pageTitle) {
+  routes[path] = [callback, filePath, pageTitle];
 }
 
 /**
@@ -60,7 +65,8 @@ export async function navigate(path, elementID, data = null, firstTime = true) {
   }
 
   window.history.pushState({}, "", path);
-  await renderPage(routes[path][1], elementID);
+
+  await renderPage(routes[path][1], elementID, routes[path][2]);
   if (routes[path]) routes[path][0]?.(data);
 }
 
@@ -85,9 +91,8 @@ export async function navigateBackwards(firstTime = true) {
     }
   }
 
-  await renderPage(routes[path][1], "app");
-  if (routes[path]) routes[path][0]?.();
-  
+  await renderPage(routes[path][1], "app", routes[path][2]);
+  if (routes[path][0]) routes[path][0]?.();
 }
 
 /**
@@ -95,12 +100,15 @@ export async function navigateBackwards(firstTime = true) {
  * @param {string} filePath - Caminho do arquivo HTML a ser carregado.
  * @param {string} elementID - Id do elemento onde será carregada a página.
  **/
-export async function renderPage(filePath, elementID) {
+export async function renderPage(filePath, elementID, pTitle) {
   addLogoutButtonIfNotExists();
   const element = document.getElementById(elementID);
   try {
     element.innerHTML = await fetch(filePath).then((f) => f.text());
     setScripts(element);
+
+    pageTitle.textContent = pTitle;
+    pageTitle.hidden = pTitle == null;
   } catch (e) {
     console.error("Error loading page:", e);
     element.innerHTML = "<h1>Erro ao carregar a página</h1>";
