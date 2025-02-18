@@ -48,7 +48,6 @@ body,
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100%;
 }
 
 .container {
@@ -155,16 +154,41 @@ header {
 
 .card {
   aspect-ratio: 1;
-  border-radius: 20px;
+  border-radius: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.card:hover {
+  border-radius: 20px;
+}
+
 a.card {
-  font-size: 5vw;
+  font-size: 5.2vw;
   text-decoration: none;
   text-align: center;
   font-weight: bold;
   color: #ffffff;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.button-delete {
+  background-color: #e74c3c;
+}
+
+.button-delete:hover {
+  background-color: #c0392b;
+}
+
+.button-update {
+  background-color: #3498db;
+}
+
+.button-update:hover {
+  background-color: #2980b9;
 }

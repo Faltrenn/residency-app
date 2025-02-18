@@ -28,7 +28,7 @@ export function setLinksLogic(elementID, logic) {
  * @returns {Promise<object>}
  */
 export async function fetchAPI(path, method, headers, body) {
-  const response = await fetch(`http://192.168.0.107:8000${path}`, {
+  const response = await fetch(`http://10.0.0.164:8000${path}`, {
     method: method.toUpperCase(),
     headers: {
       "Content-Type": "application/json",
