@@ -11,7 +11,8 @@ function showTable(table, data) {
 
   data.forEach((element) => {
     let tr = document.createElement("tr");
-    const keys = ["id", "name", "institution", "role", "pass"];
+    tr.classList.add("tdata");
+    const keys = ["name", "institution", "role"];
     for (const key of keys) {
       let td = document.createElement("td");
       td.textContent = element[key];
@@ -19,25 +20,24 @@ function showTable(table, data) {
       tr.appendChild(td);
     }
 
-    let td = document.createElement("td");
+    const btnContainer = document.createElement("td");
     let btn = document.createElement("button");
     btn.onclick = () => {
       deleteUser(element["id"]);
     };
     btn.textContent = "DEL";
-    td.appendChild(btn);
-    tr.classList.add("tdata");
+    btn.className = "small-button button-delete";
+    btnContainer.appendChild(btn);
 
-    let td2 = document.createElement("td");
     let btn2 = document.createElement("button");
     btn2.onclick = () => {
       navigate("/update-user", "app", element);
     };
     btn2.textContent = "UPD";
-    td2.appendChild(btn2);
+    btn2.className = "small-button button-update";
+    btnContainer.appendChild(btn2);
 
-    tr.appendChild(td);
-    tr.appendChild(td2);
+    tr.appendChild(btnContainer);
     tbody.appendChild(tr);
   });
 }

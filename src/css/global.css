@@ -15,31 +15,6 @@ body,
   color: #333;
 }
 
-.a {
-  /* page background */
-  background-color: #f5f5f5;
-  /* header */
-  background-color: #3d3d50;
-  /* add-button*/
-  background-color: #3498db;
-  background-color: #2980b9;
-  /* delete-button */
-  background-color: #e74c3c;
-  background-color: #c0392b;
-  /* text */
-  color: #333;
-  /* button? */
-  background-color: #3cb5a3;
-  background-color: #329e8f;
-  /* card? */
-  background-color: #3cb5a3;
-  background-color: #388e3c;
-  /* input */
-  border: 1px solid #ccc;
-  /* shadow */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 .page {
   display: flex;
   flex-direction: column;
@@ -121,19 +96,6 @@ header {
   }
 }
 
-.button,
-.small-button,
-.card {
-  background-color: #3cb5a3;
-  color: inherit;
-}
-
-.button:hover,
-.small-button:hover,
-.card:hover {
-  background-color: #329e8f;
-}
-
 .options-list {
   width: 100%;
   display: grid;
@@ -166,7 +128,8 @@ a.card {
   gap: 20px;
 }
 
-.button {
+.button,
+.small-button {
   color: #ffffff;
   width: 100%;
   font-weight: bold;
@@ -174,6 +137,27 @@ a.card {
   border-radius: 20px;
   border-style: none;
   padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.small-button {
+  width: auto;
+  font-size: 9.5pt;
+  padding: 7px;
+}
+
+.button,
+.small-button,
+.card {
+  background-color: #3cb5a3;
+}
+
+.button:hover,
+.small-button:hover,
+.card:hover {
+  background-color: #329e8f;
 }
 
 .button-delete {

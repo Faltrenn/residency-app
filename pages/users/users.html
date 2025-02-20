@@ -2,25 +2,23 @@
 <html lang="pt-br">
 
 <head>
-  <link href="pages/users/style.css" rel="stylesheet" />
+  <link href="pages/users/users.css" rel="stylesheet" />
 </head>
 
-<body>
-  <a href="/add-user">Adicionar</a>
-  <input id="search" placeholder="Busque por nome" rows="1" cols="20" />
+<div class="page users-page">
+  <a href="/add-user" class="button">Adicionar</a>
+  <input id="search" class="input-field" placeholder="Busque por nome" rows="1" cols="20" />
   <table id="users-table">
     <thead>
       <tr>
-        <th>Id</th>
         <th>Nome</th>
-        <th>Intituição</th>
+        <th>Instituição</th>
         <th>Função</th>
-        <th>Senha</th>
         <th>Ações</th>
       </tr>
     </thead>
     <tbody></tbody>
   </table>
-</body>
+</div>
 
 </html>
