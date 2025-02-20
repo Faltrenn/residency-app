@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<link href="pages/form-question/form-question.css" rel="stylesheet" />
+<div class="page form-question-page">
+  <div class="container form-question-container">
+    <form id="form-question-form">
+      <input type="text" id="id" name="id" hidden />
+      <div class="form-group">
+        <label for="title">Pergunta</label>
+        <input type="text" id="title" name="title" class="input-field" required />
+      </div>
+      <div class="form-group">
+        <label>Alternativas</label>
+        <div id="answers">
+          <input type="text" class="input-field" required />
+        </div>
+      </div>
+      <div class="button-container">
+        <button type="button" id="add-answer" class="button button-update">
+          Criar Alternativa
+        </button>
+        <button type="submit" class="button"></button>
+      </div>
+    </form>
+  </div>
+</div>
+
+</html>

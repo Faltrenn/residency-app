@@ -3,6 +3,7 @@ import { startAddQuestion } from "../../pages/add-question/add-question.js";
 import { startAddQuestionnaire } from "../../pages/add-questionnaire/add-questionnaire.js";
 import { startAddRole } from "../../pages/add-role/add-role.js";
 import { startAddUser } from "../../pages/add-user/add-user.js";
+import { startFormQuestion } from "../../pages/form-question/form-question.js";
 import { institutionsStart } from "../../pages/institutions/institutions.js";
 import { startLogin } from "../../pages/login/login.js";
 import { questionnairesStart } from "../../pages/questionnaires/questionnaires.js";
@@ -39,12 +40,7 @@ const ROUTES = [
     "pages/professor/professor.html",
     "Página do Professor",
   ],
-  [
-    "/add-user",
-    startAddUser,
-    "pages/add-user/add-user.html",
-    "Criar Usuário",
-  ],
+  ["/add-user", startAddUser, "pages/add-user/add-user.html", "Criar Usuário"],
   [
     "/update-user",
     startUpdateUser,
@@ -70,12 +66,7 @@ const ROUTES = [
     "Atualizar Instituição",
   ],
   ["/roles", rolesStart, "pages/roles/roles.html", "Cargos"],
-  [
-    "/add-role",
-    startAddRole,
-    "pages/add-role/add-role.html",
-    "Criar Cargo",
-  ],
+  ["/add-role", startAddRole, "pages/add-role/add-role.html", "Criar Cargo"],
   [
     "/update-role",
     startUpdateRole,
@@ -83,6 +74,12 @@ const ROUTES = [
     "Atualizar Cargo",
   ],
   ["/questions", questionsStart, "pages/questions/questions.html", "Perguntas"],
+  [
+    "/form-question",
+    startFormQuestion,
+    "pages/form-question/form-question.html",
+    "Formulário de Pergunta",
+  ],
   [
     "/add-question",
     startAddQuestion,
