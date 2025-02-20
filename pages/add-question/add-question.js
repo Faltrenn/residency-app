@@ -38,7 +38,8 @@ export function addAnswer() {
   let answers = document.getElementById("answers");
   let a = document.createElement("input");
   a.setAttribute("type", "text");
-  a.className = "input-field"
+  a.className = "input-field";
   a.required = true;
   answers.appendChild(a);
+  window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
 }

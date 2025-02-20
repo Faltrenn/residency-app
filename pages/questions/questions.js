@@ -29,19 +29,20 @@ export async function questionsStart() {
     let btnDel = document.createElement("button");
     btnDel.classList.add("button", "button-delete");
     btnDel.onclick = () => deleteQuestion(question["id"]);
-    btnDel.textContent = "DEL";
+    btnDel.textContent = "Deletar";
     buttonContainer.appendChild(btnDel);
 
     let btnUpd = document.createElement("button");
     btnUpd.classList.add("button", "button-update");
     btnUpd.onclick = () => navigate("/update-question", "app", question);
-    btnUpd.textContent = "UPD";
+    btnUpd.textContent = "Editar";
     buttonContainer.appendChild(btnUpd);
 
     questionCard.appendChild(buttonContainer);
     ql.appendChild(questionCard);
   });
 }
+
 export async function deleteQuestion(id) {
   await fetchAPI("/questions", "DELETE", {}, { id: id });
   await questionsStart();
