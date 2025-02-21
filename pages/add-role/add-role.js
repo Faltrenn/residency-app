@@ -7,6 +7,7 @@ export async function startAddRole() {
       addRole(event);
     });
 }
+
 export async function addRole(event) {
   event.preventDefault();
 
@@ -18,4 +19,3 @@ export async function addRole(event) {
     alert(`Não foi possível adicionar o cargo. Tente novamente.\n${error}`);
   }
 }
-
