@@ -4,6 +4,7 @@ import { startAddQuestionnaire } from "../../pages/add-questionnaire/add-questio
 import { startAddRole } from "../../pages/add-role/add-role.js";
 import { startAddUser } from "../../pages/add-user/add-user.js";
 import { startFormQuestion } from "../../pages/form-question/form-question.js";
+import { startFormUser } from "../../pages/form-user/formUser.js";
 import { institutionsStart } from "../../pages/institutions/institutions.js";
 import { startLogin } from "../../pages/login/login.js";
 import { questionnairesStart } from "../../pages/questionnaires/questionnaires.js";
@@ -40,11 +41,16 @@ const ROUTES = [
     "pages/professor/professor.html",
     "Página do Professor",
   ],
-  ["/add-user", startAddUser, "pages/add-user/add-user.html", "Criar Usuário"],
   [
-    "/update-user",
-    startUpdateUser,
-    "pages/update-user/update-user.html",
+    "/addUser",
+    (data) => startFormUser({ update: false, data: data }),
+    "pages/form-user/formUser.html",
+    "Adicinar Usuário",
+  ],
+  [
+    "/updateUser",
+    (data) => startFormUser({ update: true, data: data }),
+    "pages/form-user/formUser.html",
     "Atualizar Usuário",
   ],
   [
@@ -124,4 +130,3 @@ setLinksLogic("main", (path) => {
 window.addEventListener("popstate", function() {
   navigateBackwards();
 });
-

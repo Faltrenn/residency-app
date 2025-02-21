@@ -24,7 +24,7 @@ export const KEYS = Object.freeze({
 export const stateManager = {
   refreshState: (keyInfo, obj) => refreshState(keyInfo, obj),
   updateUser: {
-    set: (id) => setState(KEYS.UPDATE_USER, id),
+    set: (id) => setState(KEYS.UPDATE_USER.stateKey, id),
     get: async () =>
       await fetchUser(localStorage.getItem(KEYS.UPDATE_USER.stateKey)),
     clear: () => clearState(KEYS.UPDATE_USER.stateKey),

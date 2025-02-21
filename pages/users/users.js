@@ -32,7 +32,7 @@ function showTable(table, data) {
 
     let btn2 = document.createElement("button");
     btn2.onclick = () => {
-      navigate("/update-user", "app", element);
+      navigate("/updateUser", "app", element);
     };
     btn2.textContent = "UPD";
     btn2.className = "small-button button-update";
