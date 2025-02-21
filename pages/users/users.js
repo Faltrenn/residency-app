@@ -20,7 +20,8 @@ function showTable(table, data) {
       tr.appendChild(td);
     }
 
-    const btnContainer = document.createElement("td");
+    const btnContainer = document.createElement("div");
+    btnContainer.className = "crud-button-container";
     let btn = document.createElement("button");
     btn.onclick = () => {
       deleteUser(element["id"]);
@@ -37,7 +38,9 @@ function showTable(table, data) {
     btn2.className = "small-button button-update";
     btnContainer.appendChild(btn2);
 
-    tr.appendChild(btnContainer);
+    const td = document.createElement("td");
+    td.appendChild(btnContainer);
+    tr.appendChild(td);
     tbody.appendChild(tr);
   });
 }
