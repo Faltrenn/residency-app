@@ -124,3 +124,4 @@ setLinksLogic("main", (path) => {
 window.addEventListener("popstate", function() {
   navigateBackwards();
 });
+

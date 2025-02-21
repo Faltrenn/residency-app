@@ -1,18 +1,20 @@
-<div>
-  <form id="add-institution-form">
-    <div>
-      <label for="short_name">Sigla</label>
-      <input type="text" id="short_name" name="short_name" required />
-    </div>
+<div class="fixed-page">
+  <div class="container">
 
-    <div>
-      <div>
-        <label for="name">Nome</label>
-        <input type="text" id="name" name="name" required />
+    <form id="add-institution-form">
+      <div class="form-group">
+        <label for="short_name">Sigla</label>
+        <input type="text" id="short_name" class="input-field" name="short_name" placeholder="Sigla da Instituição"
+          required />
       </div>
 
       <div>
-        <button type="submit">Criar Instituição</button>
-      </div>
-  </form>
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input type="text" id="name" class="input-field" name="name" placeholder="Nome da instituição" required />
+        </div>
+
+        <button type="submit" class="button">Criar Instituição</button>
+    </form>
+  </div>
 </div>
