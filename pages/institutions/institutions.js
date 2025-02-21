@@ -1,5 +1,5 @@
 import { navigate } from "../../src/js/router.js";
-import { fetchAPI, fetchInstitutions} from "../../src/js/utils.js";
+import { fetchAPI, fetchInstitutions } from "../../src/js/utils.js";
 
 let runned = false;
 let users = [];
@@ -19,25 +19,27 @@ function showTable(table, data) {
       tr.appendChild(td);
     }
 
-    let td = document.createElement("td");
+    let btnContainer = document.createElement("div");
+    btnContainer.className = "crud-button-container";
     let btn = document.createElement("button");
     btn.onclick = () => {
       deleteInstitution(element["short_name"]);
     };
     btn.textContent = "DEL";
-    td.appendChild(btn);
-    tr.classList.add("tdata");
+    btn.className = "small-button button-delete";
+    btnContainer.appendChild(btn);
 
-    let td2 = document.createElement("td");
     let btn2 = document.createElement("button");
     btn2.onclick = () => {
       navigate("/update-institution", "app", element);
     };
     btn2.textContent = "UPD";
-    td2.appendChild(btn2);
+    btn2.className = "small-button button-update";
+    btnContainer.appendChild(btn2);
 
+    const td = document.createElement("td");
+    td.appendChild(btnContainer);
     tr.appendChild(td);
-    tr.appendChild(td2);
     tbody.appendChild(tr);
   });
 }

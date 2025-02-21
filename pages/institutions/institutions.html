@@ -1,22 +1,15 @@
-<!doctype html>
-<html lang="pt-br">
-
-<head>
-  <link href="css/style.css" rel="stylesheet" />
-</head>
-
-<body>
-  <a href="/add-institution">Adicionar</a>
-  <input id="search" placeholder="Busque por nome" rows="1" cols="20" />
-  <table id="institutions-table">
+<div class="page">
+  <a href="/add-institution" class="button">Adicionar</a>
+  <input id="search" class="input-field" placeholder="Busque por nome" rows="1" cols="20" />
+  <table id="institutions-table" class="crud-table">
     <thead>
       <tr>
         <th>Sigla</th>
         <th>Nome</th>
+        <th>Ações</th>
       </tr>
     </thead>
     <tbody></tbody>
   </table>
-</body>
+</div>
 
-</html>
