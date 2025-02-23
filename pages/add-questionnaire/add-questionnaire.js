@@ -33,20 +33,23 @@ export async function startAddQuestionnaire() {
   const qts = await fetchQuestions();
   const questions = document.getElementById("questions");
   qts.forEach((qt) => {
+    const div = document.createElement("div")
+    div.className = "form-group"
     let label = document.createElement("label");
     label.setAttribute("for", qt["id"]);
     label.textContent = qt["title"] + ": ";
     let select = document.createElement("select");
     select.setAttribute("name", qt["id"]);
+    select.className = "input-field"
     qt["answers"].forEach((a) => {
       let option = document.createElement("option");
       option.setAttribute("value", a["id"]);
       option.textContent = a["title"];
       select.appendChild(option);
     });
-    questions.appendChild(label);
-    questions.appendChild(select);
-    questions.appendChild(document.createElement("br"));
+    div.appendChild(label);
+    div.appendChild(select);
+    questions.appendChild(div)
   });
 }
 

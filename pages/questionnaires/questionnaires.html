@@ -28,9 +28,9 @@
   }
 </style>
 <div class="page">
-  <button class="button" onclick="addQuestionnaire()">
+  <a href="/add-questionnaire" class="button"">
     Adicionar Avaliação
-  </button>
+  </a>
   <div class="container" id="questionnaireList"></div>
 </div>
 
@@ -78,10 +78,6 @@
                 `;
       listContainer.appendChild(div);
     });
-  }
-
-  function addQuestionnaire() {
-    alert("Função para adicionar uma nova avaliação");
   }
 
   function updateQuestionnaire(index) {
