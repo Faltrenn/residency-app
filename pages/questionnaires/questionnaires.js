@@ -96,9 +96,6 @@ export function renderQuestionnaire(questionnaire) {
     answer.textContent = `Resposta: ${qa.answer.title}`;
     questions.appendChild(answer);
   });
-  //questionsHtml += `<div class="question">${r.question}</div><div class="answer">Resposta: ${r.answer}</div>`;
 
   return quest;
-
-  //< div class="questions" > ${ questionsHtml }</div >
 }

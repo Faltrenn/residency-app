@@ -58,7 +58,7 @@ export async function addQuestionnaire(event) {
 
   const professor_id = document.getElementById("professor-select").value;
   const resident_id = document.getElementById("resident-select").value;
-  const options = document.querySelectorAll("#questions > select");
+  const options = document.querySelectorAll("#questions > .form-group > select");
 
   let questions_answereds = [];
   options.forEach((input) => {
