@@ -3,11 +3,11 @@ import { startAddQuestion } from "../../pages/add-question/add-question.js";
 import { startAddQuestionnaire } from "../../pages/add-questionnaire/add-questionnaire.js";
 import { startAddRole } from "../../pages/add-role/add-role.js";
 import { startAddUser } from "../../pages/add-user/add-user.js";
-import { startFormQuestion } from "../../pages/form-question/form-question.js";
 import { startFormUser } from "../../pages/form-user/formUser.js";
 import { startInstitutionForm } from "../../pages/institution-form/institutionForm.js";
 import { institutionsStart } from "../../pages/institutions/institutions.js";
 import { startLogin } from "../../pages/login/login.js";
+import { startQuestionForm } from "../../pages/question-form/questionForm.js";
 import { questionnairesStart } from "../../pages/questionnaires/questionnaires.js";
 import { questionsStart } from "../../pages/questions/questions.js";
 import { startRoleForm } from "../../pages/role-form/roleForme.js";
@@ -96,21 +96,19 @@ const ROUTES = [
   ],
   ["/questions", questionsStart, "pages/questions/questions.html", "Perguntas"],
   [
-    "/form-question",
-    startFormQuestion,
-    "pages/form-question/form-question.html",
-    "Formulário de Pergunta",
-  ],
-  [
     "/add-question",
-    startAddQuestion,
-    "pages/add-question/add-question.html",
+    (data) => {
+      startQuestionForm({ update: false, data: data });
+    },
+    "pages/question-form/questionForm.html",
     "Criar Pergunta",
   ],
   [
     "/update-question",
-    startUpdateQuestion,
-    "pages/update-question/update-question.html",
+    (data) => {
+      startQuestionForm({ update: true, data: data });
+    },
+    "pages/question-form/questionForm.html",
     "Atualizar Pergunta",
   ],
   [
