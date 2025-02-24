@@ -5,6 +5,7 @@ import { startAddRole } from "../../pages/add-role/add-role.js";
 import { startAddUser } from "../../pages/add-user/add-user.js";
 import { startFormQuestion } from "../../pages/form-question/form-question.js";
 import { startFormUser } from "../../pages/form-user/formUser.js";
+import { startInstitutionForm } from "../../pages/institution-form/institutionForm.js";
 import { institutionsStart } from "../../pages/institutions/institutions.js";
 import { startLogin } from "../../pages/login/login.js";
 import { questionnairesStart } from "../../pages/questionnaires/questionnaires.js";
@@ -61,14 +62,18 @@ const ROUTES = [
   ],
   [
     "/add-institution",
-    startAddInstitution,
-    "pages/add-institution/add-institution.html",
+    (data) => {
+      startInstitutionForm({ update: false, data: data });
+    },
+    "pages/institution-form/institutionForm.html",
     "Criar Instituição",
   ],
   [
     "/update-institution",
-    startUpdateInstitution,
-    "pages/update-institution/update-institution.html",
+    (data) => {
+      startInstitutionForm({ update: true, data: data });
+    },
+    "pages/institution-form/institutionForm.html",
     "Atualizar Instituição",
   ],
   ["/roles", rolesStart, "pages/roles/roles.html", "Cargos"],
