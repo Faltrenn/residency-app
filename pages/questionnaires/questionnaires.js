@@ -1,6 +1,5 @@
 import { navigate } from "../../src/js/router.js";
 import { fetchAPI, fetchQuestionnaires } from "../../src/js/utils.js";
-import { updateQuestionnaire } from "../update-questionnaire/update-questionnaire.js";
 
 export async function questionnairesStart() {
   const ql = document.getElementById("questionnaires-list");
@@ -72,7 +71,9 @@ export function renderQuestionnaire(questionnaire) {
 
   let btnUpdate = document.createElement("button");
   btnUpdate.className = "small-button button-update";
-  btnUpdate.addEventListener("click", updateQuestionnaire);
+  btnUpdate.addEventListener("click", () => {
+    navigate("/update-questionnaire", "app", questionnaire);
+  });
   btnUpdate.textContent = "Atualizar";
   btnContainer.appendChild(btnUpdate);
 
