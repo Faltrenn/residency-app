@@ -1,0 +1,28 @@
+.student-name {
+  font-size: 14pt;
+  flex: 1;
+  margin: 0;
+}
+
+.questions {
+  margin-top: 5px;
+}
+
+.question {
+  font-size: 14pt;
+  margin: 3px 0;
+  font-style: italic;
+}
+
+.answer {
+  font-weight: bold;
+}
+
+.questionnaire {
+  background-color: #f4f4f4;
+  padding: 10px;
+}
+
+.questionnaire-header {
+  display: flex;
+}
