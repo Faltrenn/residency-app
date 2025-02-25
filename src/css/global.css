@@ -91,7 +91,7 @@ header {
       text-decoration: none;
     }
 
-    & h1 {
+    & > a {
       font-size: 19pt;
       color: #e4e4e4;
     }

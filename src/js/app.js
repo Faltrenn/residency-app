@@ -151,6 +151,10 @@ setLinksLogic("main", (path) => {
   navigate(path, "app");
 });
 
+document.getElementById("back").onclick = () => {
+  history.back();
+};
+
 window.addEventListener("popstate", function() {
   navigateBackwards();
 });
