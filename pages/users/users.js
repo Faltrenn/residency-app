@@ -1,5 +1,6 @@
 import { navigate } from "../../src/js/router.js";
 import { fetchAPI, fetchUsers } from "../../src/js/utils.js";
+import { role } from "../login/login.js";
 
 let runned = false;
 let users = [];
@@ -20,27 +21,29 @@ function showTable(table, data) {
       tr.appendChild(td);
     }
 
-    const btnContainer = document.createElement("div");
-    btnContainer.className = "crud-button-container";
-    let btn = document.createElement("button");
-    btn.onclick = () => {
-      deleteUser(element["id"]);
-    };
-    btn.textContent = "DEL";
-    btn.className = "small-button button-delete";
-    btnContainer.appendChild(btn);
+    if (role == "Admin") {
+      const btnContainer = document.createElement("div");
+      btnContainer.className = "crud-button-container";
+      let btn = document.createElement("button");
+      btn.onclick = () => {
+        deleteUser(element["id"]);
+      };
+      btn.textContent = "DEL";
+      btn.className = "small-button button-delete";
+      btnContainer.appendChild(btn);
 
-    let btn2 = document.createElement("button");
-    btn2.onclick = () => {
-      navigate("/updateUser", element);
-    };
-    btn2.textContent = "UPD";
-    btn2.className = "small-button button-update";
-    btnContainer.appendChild(btn2);
+      let btn2 = document.createElement("button");
+      btn2.onclick = () => {
+        navigate("/updateUser", element);
+      };
+      btn2.textContent = "UPD";
+      btn2.className = "small-button button-update";
+      btnContainer.appendChild(btn2);
 
-    const td = document.createElement("td");
-    td.appendChild(btnContainer);
-    tr.appendChild(td);
+      const td = document.createElement("td");
+      td.appendChild(btnContainer);
+      tr.appendChild(td);
+    }
     tbody.appendChild(tr);
   });
 }
@@ -61,6 +64,10 @@ export async function start() {
 
       showTable(tb, sUsers);
     });
+
+    document.getElementById("add-user").remove();
+    document.querySelector("table > thead > tr > th:last-child").remove();
+
     runned = true;
   }
   users = await fetchUsers();

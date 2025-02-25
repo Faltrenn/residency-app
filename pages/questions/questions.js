@@ -1,9 +1,12 @@
 import { navigate } from "../../src/js/router.js";
 import { fetchAPI, fetchQuestions } from "../../src/js/utils.js";
+import { role } from "../login/login.js";
 
 export async function questionsStart() {
   const ql = document.getElementById("questions-list");
   ql.innerHTML = "";
+
+  document.getElementById("add-question").remove();
 
   let questions = await fetchQuestions();
   questions.forEach((question) => {
@@ -23,22 +26,24 @@ export async function questionsStart() {
     });
     questionCard.appendChild(answerList);
 
-    let buttonContainer = document.createElement("div");
-    buttonContainer.classList.add("button-container");
+    if (role == "Admin") {
+      let buttonContainer = document.createElement("div");
+      buttonContainer.classList.add("button-container");
 
-    let btnDel = document.createElement("button");
-    btnDel.classList.add("button", "button-delete");
-    btnDel.onclick = () => deleteQuestion(question["id"]);
-    btnDel.textContent = "Deletar";
-    buttonContainer.appendChild(btnDel);
+      let btnDel = document.createElement("button");
+      btnDel.classList.add("button", "button-delete");
+      btnDel.onclick = () => deleteQuestion(question["id"]);
+      btnDel.textContent = "Deletar";
+      buttonContainer.appendChild(btnDel);
 
-    let btnUpd = document.createElement("button");
-    btnUpd.classList.add("button", "button-update");
-    btnUpd.onclick = () => navigate("/update-question", question);
-    btnUpd.textContent = "Editar";
-    buttonContainer.appendChild(btnUpd);
+      let btnUpd = document.createElement("button");
+      btnUpd.classList.add("button", "button-update");
+      btnUpd.onclick = () => navigate("/update-question", question);
+      btnUpd.textContent = "Editar";
+      buttonContainer.appendChild(btnUpd);
 
-    questionCard.appendChild(buttonContainer);
+      questionCard.appendChild(buttonContainer);
+    }
     ql.appendChild(questionCard);
   });
 }

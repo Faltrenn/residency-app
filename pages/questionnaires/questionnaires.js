@@ -1,9 +1,14 @@
 import { navigate } from "../../src/js/router.js";
 import { fetchAPI, fetchQuestionnaires } from "../../src/js/utils.js";
+import { role } from "../login/login.js";
 
 export async function questionnairesStart() {
   const ql = document.getElementById("questionnaires-list");
   ql.innerHTML = "";
+
+  if (role == "Residente") {
+    document.getElementById("add-questionnaire").remove();
+  }
 
   let questionnaires = await fetchQuestionnaires();
   questionnaires.forEach((questionnaire) => {
@@ -24,23 +29,25 @@ export function renderQuestionnaire(questionnaire) {
   h3.textContent = questionnaire.resident.name;
   header.appendChild(h3);
 
-  let btnContainer = document.createElement("div");
-  btnContainer.className = "button-container";
-  header.appendChild(btnContainer);
+  if (role != "Residente") {
+    let btnContainer = document.createElement("div");
+    btnContainer.className = "button-container";
+    header.appendChild(btnContainer);
 
-  let btnUpdate = document.createElement("button");
-  btnUpdate.className = "small-button button-update";
-  btnUpdate.addEventListener("click", () => {
-    navigate("/update-questionnaire", questionnaire);
-  });
-  btnUpdate.textContent = "Atualizar";
-  btnContainer.appendChild(btnUpdate);
+    let btnUpdate = document.createElement("button");
+    btnUpdate.className = "small-button button-update";
+    btnUpdate.addEventListener("click", () => {
+      navigate("/update-questionnaire", questionnaire);
+    });
+    btnUpdate.textContent = "Atualizar";
+    btnContainer.appendChild(btnUpdate);
 
-  let btnDelete = document.createElement("button");
-  btnDelete.className = "small-button button-delete";
-  btnDelete.addEventListener("click", deleteQuestionnaire);
-  btnDelete.textContent = "Excluir";
-  btnContainer.appendChild(btnDelete);
+    let btnDelete = document.createElement("button");
+    btnDelete.className = "small-button button-delete";
+    btnDelete.addEventListener("click", deleteQuestionnaire);
+    btnDelete.textContent = "Excluir";
+    btnContainer.appendChild(btnDelete);
+  }
 
   let questions = document.createElement("div");
   questions.className = "questions";
