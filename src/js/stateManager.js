@@ -61,7 +61,7 @@ const getState = (key) => localStorage.getItem(key);
 const clearState = (key) => localStorage.removeItem(key);
 
 /**
- * Refresh a passed obj state to new value or get saved value
+ * Refresh a given obj state to new value or get saved value
  *
  * @param {KeyObject} keyInfo - Values to manipulate correct state.
  * @param {Object} obj - Object that contains or not new values.

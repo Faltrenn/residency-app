@@ -15,6 +15,10 @@ body,
   color: #333;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 .page,
 .fixed-page {
   display: flex;

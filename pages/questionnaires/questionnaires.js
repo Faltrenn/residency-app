@@ -31,7 +31,7 @@ export function renderQuestionnaire(questionnaire) {
   let btnUpdate = document.createElement("button");
   btnUpdate.className = "small-button button-update";
   btnUpdate.addEventListener("click", () => {
-    navigate("/update-questionnaire", "app", questionnaire);
+    navigate("/update-questionnaire", questionnaire);
   });
   btnUpdate.textContent = "Atualizar";
   btnContainer.appendChild(btnUpdate);

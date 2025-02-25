@@ -19,7 +19,7 @@ import { startUpdateQuestionnaire } from "../../pages/update-questionnaire/updat
 import { startUpdateRole } from "../../pages/update-role/update-role.js";
 import { startUpdateUser } from "../../pages/update-user/update-user.js";
 import { start } from "../../pages/users/users.js";
-import { navigate, navigateBackwards, registerRoute } from "./router.js";
+import { navigate, registerRoute } from "./router.js";
 import { setLinksLogic } from "./utils.js";
 
 export const ROLES_PATH = {
@@ -145,16 +145,19 @@ const ROUTES = [
 // Registrar todas as rotas antes de qualquer coisa.
 ROUTES.forEach((r) => registerRoute(...r));
 
-navigate(window.location.pathname, "app");
+export const initialHistoryLength = history.length;
+export const backButton = document.getElementById("back");
 
-setLinksLogic("main", (path) => {
-  navigate(path, "app");
-});
-
-document.getElementById("back").onclick = () => {
+backButton.onclick = () => {
   history.back();
 };
 
+navigate("/");
+
+setLinksLogic("main", (path) => {
+  navigate(path);
+});
+
 window.addEventListener("popstate", function() {
-  navigateBackwards();
+  navigate(window.location.pathname, null, true);
 });

@@ -1,4 +1,4 @@
-import { ROLES_PATH, pageTitle } from "./app.js";
+import { ROLES_PATH, backButton, pageTitle } from "./app.js";
 import {
   addLogoutButtonIfNotExists,
   refreshRoleAndToken,
@@ -7,6 +7,8 @@ import {
 } from "../../pages/login/login.js";
 
 const routes = {}; // Rotas {path: [callback, filePath]}
+
+let navigationCount = null;
 
 /**
  * Registra uma rota.
@@ -41,15 +43,20 @@ function setScripts(element) {
 }
 
 /**
- * Navegar para path
- * @param {string} path - Caminho da rota (ex: /login).
- * @param {string} elementID - Id do elemento onde a pagina será carregada.
- **/
-export async function navigate(path, elementID, data = null, firstTime = true) {
+ * Navigate to a given path
+ *
+ * @async
+ * @param {string} path - path (ex: /login).
+ * @param {object} data - Relevant data to the route.
+ * @param {bool} backwards - If is a backward navigation.
+ * @param {bool} [firstTime] - If is first time running.
+ * @returns {Promise<void>}
+ */
+export async function navigate(path, data, backwards, firstTime = true) {
   if (firstTime) await refreshRoleAndToken();
 
   if (!token && path != "/login") {
-    navigate("/login", "app", data, false);
+    navigate("/login", data, backwards, false);
     return;
   }
 
@@ -60,42 +67,27 @@ export async function navigate(path, elementID, data = null, firstTime = true) {
       (Object.values(ROLES_PATH).includes(path) &&
         path != `/${role.toLowerCase()}`)
     ) {
-      navigate(`/${role.toLowerCase()}`, "app", false);
+      navigate(`/${role.toLowerCase()}`, data, backwards, false);
       return;
     }
   }
 
-  if (window.location.pathname !== path) {
-    window.history.pushState({}, "", path);
-  }
-
-  await renderPage(routes[path][1], elementID, routes[path][2]);
-  if (routes[path]) routes[path][0]?.(data);
-}
-
-export async function navigateBackwards(firstTime = true) {
-  if (firstTime) await refreshRoleAndToken();
-
-  const path = window.location.pathname;
-
-  if (!token && path != "/login") {
-    navigate("/login", "app");
-    return;
-  }
-
-  if (token) {
-    if (
-      !(path in routes) ||
-      path === "/login" ||
-      (Object.values(ROLES_PATH).includes(path) && path != `/${role}`)
-    ) {
-      navigate(`/${role}`, "app", false);
-      return;
+  if (!backwards) {
+    if (window.location.pathname !== path) {
+      window.history.pushState({}, "", path);
+      navigationCount = navigationCount == null ? 0 : navigationCount + 1;
     }
+  } else {
+    navigationCount--;
   }
+
+  //backButton.className =
+  //  initialHistoryLength != history.length ? "" : "invisible";
+  backButton.className = navigationCount > 0 ? "" : "invisible";
+  console.log(navigationCount);
 
   await renderPage(routes[path][1], "app", routes[path][2]);
-  if (routes[path][0]) routes[path][0]?.();
+  if (routes[path]) routes[path][0]?.(data);
 }
 
 /**

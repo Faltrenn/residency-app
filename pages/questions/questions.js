@@ -34,7 +34,7 @@ export async function questionsStart() {
 
     let btnUpd = document.createElement("button");
     btnUpd.classList.add("button", "button-update");
-    btnUpd.onclick = () => navigate("/update-question", "app", question);
+    btnUpd.onclick = () => navigate("/update-question", question);
     btnUpd.textContent = "Editar";
     buttonContainer.appendChild(btnUpd);
 

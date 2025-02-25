@@ -69,7 +69,7 @@ export async function login(event) {
     localStorage.setItem("role", data.role);
     role = data.role;
     token = data.token;
-    navigate(`/${role.toLowerCase()}`, "app");
+    navigate(`/${role.toLowerCase()}`);
   } catch (error) {
     alert(`Não foi possível realizar o login. Tente novamente.\n${error}`);
   }
@@ -83,7 +83,7 @@ export function logout() {
   localStorage.clear();
   role = null;
   token = null;
-  navigate("/login", "app");
+  navigate("/login");
 }
 
 export function addLogoutButtonIfNotExists() {
