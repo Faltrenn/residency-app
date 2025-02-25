@@ -6,7 +6,7 @@ import { startAddUser } from "../../pages/add-user/add-user.js";
 import { startFormUser } from "../../pages/form-user/formUser.js";
 import { startInstitutionForm } from "../../pages/institution-form/institutionForm.js";
 import { institutionsStart } from "../../pages/institutions/institutions.js";
-import { startLogin } from "../../pages/login/login.js";
+import { logout, startLogin } from "../../pages/login/login.js";
 import { startQuestionForm } from "../../pages/question-form/questionForm.js";
 import { startQuestionnaireForm } from "../../pages/questionnaire-form/questionnaireForm.js";
 import { questionnairesStart } from "../../pages/questionnaires/questionnaires.js";
