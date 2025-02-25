@@ -129,6 +129,7 @@ a.card {
   text-decoration: none;
   text-align: center;
   font-weight: bold;
+  word-break: break-all;
   color: #ffffff;
 }
 
