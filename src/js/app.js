@@ -23,9 +23,9 @@ import { navigate, registerRoute } from "./router.js";
 import { setLinksLogic } from "./utils.js";
 
 export const ROLES_PATH = {
-  ADMIN: "/admin",
-  PROFESSOR: "/professor",
-  RESIDENT: "/residente",
+  ADMIN: "/Admin",
+  PROFESSOR: "/Professor",
+  RESIDENT: "/Residente",
 };
 
 export const pageTitle = document.getElementById("page-title");
@@ -145,6 +145,11 @@ const ROUTES = [
 // Registrar todas as rotas antes de qualquer coisa.
 ROUTES.forEach((r) => registerRoute(...r));
 
+export const logoutButton = document.getElementById("btn-logout")
+logoutButton.addEventListener("click", () => {
+  logout();
+});
+
 export const initialHistoryLength = history.length;
 export const backButton = document.getElementById("back");
 
@@ -158,6 +163,6 @@ setLinksLogic("main", (path) => {
   navigate(path);
 });
 
-window.addEventListener("popstate", function() {
+window.addEventListener("popstate", function () {
   navigate(window.location.pathname, null, true);
 });

@@ -1,3 +1,4 @@
+import { logoutButton } from "../../src/js/app.js";
 import { navigate } from "../../src/js/router.js";
 import { fetchAPI } from "../../src/js/utils.js";
 
@@ -5,11 +6,9 @@ export let role = localStorage.getItem("role");
 export let token = localStorage.getItem("token");
 
 export function startLogin() {
-  document.getElementById("btn-logout")?.remove();
+  logoutButton.className = "invisible";
 
-  document.getElementById("login-form").addEventListener("submit", (event) => {
-    login(event);
-  });
+  document.getElementById("login-form").addEventListener("submit", login);
 }
 
 /**
@@ -23,7 +22,7 @@ async function verifyToken() {
     try {
       const data = await fetchAPI("/login/check", "GET", {}, {});
       localStorage.setItem("role", data["role"]);
-    } catch(e){
+    } catch (e) {
       alert("Token expirado!", e);
       logout();
       return;
@@ -48,7 +47,7 @@ export async function refreshRoleAndToken() {
  * Tenta realizar o login, se bem sucessido, recebe token e role que são armazenados, caso contrário, erro.
  *
  * @async
- * @param {event} event - Evento de submit do form.
+ * @param {Event} event - Evento de submit do form.
  * @throws {Error} - Caso o login der errado, pode ser: usuário e senha incorretos, erro interno da api e api fora do ar.
  * @returns {Promise<void>}
  */
@@ -84,16 +83,4 @@ export function logout() {
   role = null;
   token = null;
   navigate("/login");
-}
-
-export function addLogoutButtonIfNotExists() {
-  if (!document.getElementById("btn-logout")) {
-    const btn = document.createElement("button");
-    btn.id = "btn-logout";
-    btn.textContent = "Logout";
-    btn.addEventListener("click", () => {
-      logout();
-    });
-    document.getElementById("navbar").appendChild(btn);
-  }
 }

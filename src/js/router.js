@@ -1,6 +1,5 @@
-import { ROLES_PATH, backButton, pageTitle } from "./app.js";
+import { ROLES_PATH, backButton, logoutButton, pageTitle } from "./app.js";
 import {
-  addLogoutButtonIfNotExists,
   refreshRoleAndToken,
   role,
   token,
@@ -57,6 +56,7 @@ export async function navigate(path, data, backwards, firstTime = true) {
 
   if (!token && path != "/login") {
     navigate("/login", data, backwards, false);
+    navigationCount = -1;
     return;
   }
 
@@ -64,10 +64,9 @@ export async function navigate(path, data, backwards, firstTime = true) {
     if (
       !(path in routes) ||
       path === "/login" ||
-      (Object.values(ROLES_PATH).includes(path) &&
-        path != `/${role.toLowerCase()}`)
+      (Object.values(ROLES_PATH).includes(path) && path != `/${role}`)
     ) {
-      navigate(`/${role.toLowerCase()}`, data, backwards, false);
+      navigate(`/${role}`, data, backwards, false);
       return;
     }
   }
@@ -84,7 +83,6 @@ export async function navigate(path, data, backwards, firstTime = true) {
   //backButton.className =
   //  initialHistoryLength != history.length ? "" : "invisible";
   backButton.className = navigationCount > 0 ? "" : "invisible";
-  console.log(navigationCount);
 
   await renderPage(routes[path][1], "app", routes[path][2]);
   if (routes[path]) routes[path][0]?.(data);
@@ -96,7 +94,8 @@ export async function navigate(path, data, backwards, firstTime = true) {
  * @param {string} elementID - Id do elemento onde será carregada a página.
  **/
 export async function renderPage(filePath, elementID, pTitle) {
-  addLogoutButtonIfNotExists();
+  logoutButton.className = "";
+
   const element = document.getElementById(elementID);
   try {
     element.innerHTML = await fetch(filePath).then((f) => f.text());
