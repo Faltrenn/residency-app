@@ -23,9 +23,9 @@ import { navigate, navigateBackwards, registerRoute } from "./router.js";
 import { setLinksLogic } from "./utils.js";
 
 export const ROLES_PATH = {
-  ADMIN: "/Admin",
-  PROFESSOR: "/Professor",
-  RESIDENT: "/Resident",
+  ADMIN: "/admin",
+  PROFESSOR: "/professor",
+  RESIDENT: "/residente",
 };
 
 export const pageTitle = document.getElementById("page-title");
@@ -43,6 +43,12 @@ const ROUTES = [
     null,
     "pages/professor/professor.html",
     "Página do Professor",
+  ],
+  [
+    ROLES_PATH.RESIDENT,
+    null,
+    "pages/resident/resident.html",
+    "Página do Residente",
   ],
   [
     "/addUser",

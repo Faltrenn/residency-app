@@ -69,7 +69,7 @@ export async function login(event) {
     localStorage.setItem("role", data.role);
     role = data.role;
     token = data.token;
-    navigate(`/${role}`, "app");
+    navigate(`/${role.toLowerCase()}`, "app");
   } catch (error) {
     alert(`Não foi possível realizar o login. Tente novamente.\n${error}`);
   }

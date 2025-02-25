@@ -57,9 +57,9 @@ export async function navigate(path, elementID, data = null, firstTime = true) {
     if (
       !(path in routes) ||
       path === "/login" ||
-      (Object.values(ROLES_PATH).includes(path) && path != `/${role}`)
+      (Object.values(ROLES_PATH).includes(path) && path != `/${role.toLowerCase()}`)
     ) {
-      navigate(`/${role}`, "app", false);
+      navigate(`/${role.toLowerCase()}`, "app", false);
       return;
     }
   }
