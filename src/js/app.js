@@ -8,6 +8,7 @@ import { startInstitutionForm } from "../../pages/institution-form/institutionFo
 import { institutionsStart } from "../../pages/institutions/institutions.js";
 import { startLogin } from "../../pages/login/login.js";
 import { startQuestionForm } from "../../pages/question-form/questionForm.js";
+import { startQuestionnaireForm } from "../../pages/questionnaire-form/questionnaireForm.js";
 import { questionnairesStart } from "../../pages/questionnaires/questionnaires.js";
 import { questionsStart } from "../../pages/questions/questions.js";
 import { startRoleForm } from "../../pages/role-form/roleForme.js";
@@ -119,14 +120,18 @@ const ROUTES = [
   ],
   [
     "/add-questionnaire",
-    startAddQuestionnaire,
-    "pages/add-questionnaire/add-questionnaire.html",
+    (data) => {
+      startQuestionnaireForm({ update: false, data: data });
+    },
+    "pages/questionnaire-form/questionnaireForm.html",
     "Criar Avaliação",
   ],
   [
     "/update-questionnaire",
-    startUpdateQuestionnaire,
-    "pages/update-questionnaire/update-questionnaire.html",
+    (data) => {
+      startQuestionnaireForm({ update: true, data: data });
+    },
+    "pages/questionnaire-form/questionnaireForm.html",
     "Atualizar Avaliação",
   ],
 ];
