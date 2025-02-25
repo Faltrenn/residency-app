@@ -95,7 +95,7 @@ header {
       text-decoration: none;
     }
 
-    & > a {
+    &>a {
       font-size: 19pt;
       color: #e4e4e4;
     }
@@ -135,6 +135,11 @@ a.card {
   font-weight: bold;
   word-break: break-all;
   color: #ffffff;
+
+  word-break: normal;
+  overflow-wrap: break-word;
+  white-space: normal;
+  hyphens: auto;
 }
 
 .button-container {
