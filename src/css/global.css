@@ -27,7 +27,8 @@ body,
   padding: 20px;
 }
 
-.fixed-page { /* Use just in case of the page not scroll */
+.fixed-page {
+  /* Use just in case of the page not scroll */
   height: 100%;
 }
 
@@ -42,7 +43,6 @@ body,
   box-sizing: border-box;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
 
 .input-field {
   width: 100%;
