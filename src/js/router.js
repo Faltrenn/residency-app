@@ -57,14 +57,17 @@ export async function navigate(path, elementID, data = null, firstTime = true) {
     if (
       !(path in routes) ||
       path === "/login" ||
-      (Object.values(ROLES_PATH).includes(path) && path != `/${role.toLowerCase()}`)
+      (Object.values(ROLES_PATH).includes(path) &&
+        path != `/${role.toLowerCase()}`)
     ) {
       navigate(`/${role.toLowerCase()}`, "app", false);
       return;
     }
   }
 
-  window.history.pushState({}, "", path);
+  if (window.location.pathname !== path) {
+    window.history.pushState({}, "", path);
+  }
 
   await renderPage(routes[path][1], elementID, routes[path][2]);
   if (routes[path]) routes[path][0]?.(data);
