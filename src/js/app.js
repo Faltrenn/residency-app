@@ -7,6 +7,7 @@ import { startFormUser } from "../../pages/form-user/formUser.js";
 import { startInstitutionForm } from "../../pages/institution-form/institutionForm.js";
 import { institutionsStart } from "../../pages/institutions/institutions.js";
 import { logout, startLogin } from "../../pages/login/login.js";
+import { proceduresStart } from "../../pages/procedures/procedures.js";
 import { startQuestionForm } from "../../pages/question-form/questionForm.js";
 import { startQuestionnaireForm } from "../../pages/questionnaire-form/questionnaireForm.js";
 import { questionnairesStart } from "../../pages/questionnaires/questionnaires.js";
@@ -139,6 +140,28 @@ const ROUTES = [
     },
     "pages/questionnaire-form/questionnaireForm.html",
     "Atualizar Avaliação",
+  ],
+  [
+    "/procedures",
+    proceduresStart,
+    "pages/procedures/procedures.html",
+    "Procedimentos",
+  ],
+  [
+    "/add-procedure",
+    (data) => {
+      startQuestionnaireForm({ update: false, data: data });
+    },
+    "pages/procedure-form/procedureForm.html",
+    "Criar Procedimento",
+  ],
+  [
+    "/update-procedure",
+    (data) => {
+      startQuestionnaireForm({ update: true, data: data });
+    },
+    "pages/procedure-form/procedureForm.html",
+    "Atualizar Procedimento",
   ],
 ];
 

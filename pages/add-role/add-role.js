@@ -1,3 +1,4 @@
+import { navigate } from "../../src/js/router.js";
 import { fetchAPI } from "../../src/js/utils.js";
 
 export async function startAddRole() {

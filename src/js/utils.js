@@ -28,7 +28,7 @@ export function setLinksLogic(elementID, logic) {
  * @returns {Promise<object>}
  */
 export async function fetchAPI(path, method, headers, body) {
-  const response = await fetch(`http://192.168.0.106:8000${path}`, {
+  const response = await fetch(`http://localhost:8000${path}`, {
     method: method.toUpperCase(),
     headers: {
       "Content-Type": "application/json",
@@ -67,6 +67,9 @@ export const fetchQuestions = async () => {
 };
 export const fetchQuestionnaires = async () => {
   return await fetchAPI("/questionnaires", "get", { token: token });
+};
+export const fetchProcedures = async () => {
+  return await fetchAPI("/procedures", "get", { token: token });
 };
 
 export const fetchUser = async (id) => {
@@ -110,6 +113,15 @@ export const fetchQuestionnaire = async (id) => {
   let questionnaire = null;
   questionnaires.forEach((item) => {
     if (item.id == id) questionnaire = item;
+  });
+  return questionnaire;
+};
+
+export const fetchProcedure = async (title) => {
+  const procedures = await fetchProcedures();
+  let procedure = null;
+  procedures.forEach((item) => {
+    if (item.title == title) procedure = item;
   });
   return questionnaire;
 };
