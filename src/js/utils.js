@@ -123,5 +123,5 @@ export const fetchProcedure = async (title) => {
   procedures.forEach((item) => {
     if (item.title == title) procedure = item;
   });
-  return questionnaire;
+  return procedure;
 };

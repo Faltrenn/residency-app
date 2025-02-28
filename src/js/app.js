@@ -7,6 +7,7 @@ import { startFormUser } from "../../pages/form-user/formUser.js";
 import { startInstitutionForm } from "../../pages/institution-form/institutionForm.js";
 import { institutionsStart } from "../../pages/institutions/institutions.js";
 import { logout, startLogin } from "../../pages/login/login.js";
+import { startProcedureForm } from "../../pages/procedure-form/procedureForm.js";
 import { proceduresStart } from "../../pages/procedures/procedures.js";
 import { startQuestionForm } from "../../pages/question-form/questionForm.js";
 import { startQuestionnaireForm } from "../../pages/questionnaire-form/questionnaireForm.js";
@@ -150,7 +151,7 @@ const ROUTES = [
   [
     "/add-procedure",
     (data) => {
-      startQuestionnaireForm({ update: false, data: data });
+      startProcedureForm({ update: false, data: data });
     },
     "pages/procedure-form/procedureForm.html",
     "Criar Procedimento",
@@ -158,7 +159,7 @@ const ROUTES = [
   [
     "/update-procedure",
     (data) => {
-      startQuestionnaireForm({ update: true, data: data });
+      startProcedureForm({ update: true, data: data });
     },
     "pages/procedure-form/procedureForm.html",
     "Atualizar Procedimento",

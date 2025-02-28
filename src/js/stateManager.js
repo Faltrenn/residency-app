@@ -1,5 +1,6 @@
 import {
   fetchInstitution,
+  fetchProcedure,
   fetchQuestion,
   fetchQuestionnaire,
   fetchRole,
@@ -19,6 +20,7 @@ export const KEYS = Object.freeze({
   UPDATE_INSTITUTION: new KeyObject("updateInstitution", "short_name"),
   UPDATE_QUESTION: new KeyObject("updateQuestion", "id"),
   UPDATE_QUESTIONNAIRE: new KeyObject("updateQuestionnaire", "id"),
+  UPDATE_PROCEDURE: new KeyObject("updateProcedure", "title"),
 });
 
 export const stateManager = {
@@ -53,6 +55,13 @@ export const stateManager = {
     get: async () =>
       await fetchQuestionnaire(getState(KEYS.UPDATE_QUESTIONNAIRE.stateKey)),
     clear: () => clearState(KEYS.UPDATE_QUESTIONNAIRE.stateKey),
+  },
+  updateProcedure: {
+    set: (procedure) =>
+      setState(KEYS.UPDATE_PROCEDURE.stateKey, procedure),
+    get: async () =>
+      await fetchProcedure(getState(KEYS.UPDATE_PROCEDURE.stateKey)),
+    clear: () => clearState(KEYS.UPDATE_PROCEDURE.stateKey),
   },
 };
 
