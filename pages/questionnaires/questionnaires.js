@@ -22,12 +22,20 @@ export function renderQuestionnaire(questionnaire) {
 
   let header = document.createElement("div");
   header.className = "questionnaire-header";
+  let info = document.createElement("div");
+  info.className = "questionnaire-header-info";
+  header.appendChild(info);
   quest.appendChild(header);
 
   let h3 = document.createElement("h3");
   h3.className = "student-name";
   h3.textContent = questionnaire.resident.name;
-  header.appendChild(h3);
+  info.appendChild(h3);
+
+  let h4 = document.createElement("h4");
+  h4.className = "procedure-title";
+  h4.textContent = questionnaire.procedure.title;
+  info.appendChild(h4);
 
   if (role != "Residente") {
     let btnContainer = document.createElement("div");
