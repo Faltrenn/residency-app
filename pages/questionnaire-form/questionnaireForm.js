@@ -1,4 +1,9 @@
-import { fetchAPI, fetchQuestions, fetchUsers } from "../../src/js/utils.js";
+import {
+  fetchAPI,
+  fetchProcedures,
+  fetchQuestions,
+  fetchUsers,
+} from "../../src/js/utils.js";
 import { KEYS, stateManager } from "../../src/js/stateManager.js";
 import { token } from "../login/login.js";
 
@@ -39,6 +44,15 @@ export async function startAddQuestionnaire() {
     }
   });
 
+  const procedures = await fetchProcedures();
+  const procedureSelect = document.getElementById("procedure-select");
+  procedures.forEach((procedure) => {
+    const o = document.createElement("option");
+    o.innerText = procedure.title;
+    o.value = procedure.title;
+    procedureSelect.appendChild(o);
+  });
+
   const qts = await fetchQuestions();
   const questions = document.getElementById("questions");
   qts.forEach((qt) => {
@@ -67,6 +81,7 @@ export async function addQuestionnaire(event) {
 
   const professor_id = document.getElementById("professor-select").value;
   const resident_id = document.getElementById("resident-select").value;
+  const procedureTitle = document.getElementById("procedure-select").value;
   const options = document.querySelectorAll(
     "#questions > .form-group > select",
   );
@@ -87,6 +102,7 @@ export async function addQuestionnaire(event) {
       {
         professor_id: professor_id,
         resident_id: resident_id,
+        procedure_title: procedureTitle,
         questions_answereds: questions_answereds,
       },
     );
@@ -135,19 +151,30 @@ export async function startUpdateQuestionnaire(questionnaire) {
 
   residentSelect.value = questionnaire.resident.id;
 
+  const procedures = await fetchProcedures();
+  const procedureSelect = document.getElementById("procedure-select");
+  procedures.forEach((procedure) => {
+    const o = document.createElement("option");
+    o.innerText = procedure.title;
+    o.value = procedure.title;
+    procedureSelect.appendChild(o);
+  });
+
+  procedureSelect.value = questionnaire.procedure.title
+
   const questions = document.getElementById("questions");
   const qts = await fetchQuestions();
-  questionnaire.questions_answereds.forEach((qt) => {
+  questionnaire.questions_answereds.forEach((qa) => {
     let div = document.createElement("div");
     div.className = "form-group";
     let label = document.createElement("label");
-    label.setAttribute("for", qt.id);
-    label.textContent = qt.title + ": ";
+    label.setAttribute("for", qa.id);
+    label.textContent = qa.title + ": ";
     let select = document.createElement("select");
     select.className = "input-field";
-    select.setAttribute("name", qt.id);
+    select.setAttribute("name", qa.id);
     qts.forEach((q) => {
-      if (qt.id == q.id) {
+      if (qa.id == q.id) {
         q.answers.forEach((a) => {
           let option = document.createElement("option");
           option.setAttribute("value", a.id);
@@ -156,7 +183,7 @@ export async function startUpdateQuestionnaire(questionnaire) {
         });
       }
     });
-    select.value = qt.answer.id;
+    select.value = qa.answer.id;
     div.appendChild(label);
     div.appendChild(select);
     questions.appendChild(div);
@@ -168,7 +195,10 @@ export async function updateQuestionnaire(event, id) {
 
   const professor_id = document.getElementById("professor-select").value;
   const resident_id = document.getElementById("resident-select").value;
-  const options = document.querySelectorAll("#questions > .form-group > select");
+  const procedureTitle = document.getElementById("procedure-select").value;
+  const options = document.querySelectorAll(
+    "#questions > .form-group > select",
+  );
 
   let questions_answereds = [];
   options.forEach((input) => {
@@ -187,6 +217,7 @@ export async function updateQuestionnaire(event, id) {
         id: id,
         professor_id: professor_id,
         resident_id: resident_id,
+        procedure_title: procedureTitle,
         questions_answereds: questions_answereds,
       },
     );
