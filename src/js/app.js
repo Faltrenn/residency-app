@@ -38,7 +38,6 @@ export const pageTitle = document.getElementById("page-title");
 // filepath é o caminho do html a ser carregado
 const ROUTES = [
   ["/login", startLogin, "pages/login/login.html", null],
-  ["/users", start, "pages/users/users.html", "Usuários"],
   [ROLES_PATH.ADMIN, null, "pages/admin/admin.html", "Página do Administrador"],
   [
     ROLES_PATH.PROFESSOR,
@@ -52,6 +51,7 @@ const ROUTES = [
     "pages/resident/resident.html",
     "Página do Residente",
   ],
+  ["/users", start, "pages/users/users.html", "Usuários"],
   [
     "/addUser",
     (data) => startFormUser({ update: false, data: data }),
@@ -169,7 +169,7 @@ const ROUTES = [
 // Registrar todas as rotas antes de qualquer coisa.
 ROUTES.forEach((r) => registerRoute(...r));
 
-export const logoutButton = document.getElementById("btn-logout")
+export const logoutButton = document.getElementById("btn-logout");
 logoutButton.addEventListener("click", () => {
   logout();
 });
@@ -181,12 +181,12 @@ backButton.onclick = () => {
   history.back();
 };
 
-navigate("/");
+navigate(window.location.pathname);
 
 setLinksLogic("main", (path) => {
   navigate(path);
 });
 
-window.addEventListener("popstate", function () {
+window.addEventListener("popstate", function() {
   navigate(window.location.pathname, null, true);
 });

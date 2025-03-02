@@ -52,7 +52,7 @@ export function renderQuestionnaire(questionnaire) {
 
     let btnDelete = document.createElement("button");
     btnDelete.className = "small-button button-delete";
-    btnDelete.addEventListener("click", deleteQuestionnaire);
+    btnDelete.addEventListener("click", () => {deleteQuestionnaire(questionnaire.id)});
     btnDelete.textContent = "Excluir";
     btnContainer.appendChild(btnDelete);
   }
